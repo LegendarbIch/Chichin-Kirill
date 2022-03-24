@@ -6,7 +6,7 @@ public class Mas {
 		int max = 0;
 		int[] myArray = new int[10];
 		for (int i = 0; i < myArray.length; i++) {
-			myArray[i] = (int) (Math.random()*100);
+			myArray[i] = -100 + (int) (Math.random()*200);
 			System.out.print("\t" + myArray[i]);
 			if (Math.abs(myArray[i]) >= max)
 				max = myArray[i];

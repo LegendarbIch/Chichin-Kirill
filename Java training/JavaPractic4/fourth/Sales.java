@@ -3,7 +3,7 @@ package fourth;
 public class Sales extends Pharmacy{
 	
 	PharMedecineFund sales = new PharMedecineFund();
-	PharСustomers clients = new PharСustomers();
+	PharCustomers clients = new PharCustomers();
 	
 	private String PatientLPF;
 	private int Count;
@@ -36,8 +36,8 @@ public class Sales extends Pharmacy{
 	}
 	
 	public String toString() {
-		return  "Название аптеки: " + super.getPhName() + "\n Название лекарства: " + sales.getMedecineName() + 
-				"\n Цена лекарства: " + sales.getMedecinePrice() + " руб" + "\n ФИО клиента: " + getPatientLPF() +
-				"\n Количество: " + getCount() + "\n Сумма к оплате: " + getAmountToBePaid(); 
+		return  "РќР°Р·РІР°РЅРёРµ Р°РїС‚РµРєРё: " + super.getPhName() + "\n РќР°Р·РІР°РЅРёРµ Р»РµРєР°СЂСЃС‚РІР°: " + sales.getMedecineName() + 
+				"\n Р¦РµРЅР° Р»РµРєР°СЂСЃС‚РІР°: " + sales.getMedecinePrice() + " СЂСѓР±" + "\n Р¤РРћ РєР»РёРµРЅС‚Р°: " + getPatientLPF() +
+				"\n РљРѕР»РёС‡РµСЃС‚РІРѕ: " + getCount() + "\n РЎСѓРјРјР° Рє РѕРїР»Р°С‚Рµ: " + getAmountToBePaid(); 
 	}
 }

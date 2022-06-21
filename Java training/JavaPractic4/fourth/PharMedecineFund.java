@@ -41,8 +41,8 @@ public class PharMedecineFund extends Pharmacy{
 		return OriginCountry;
 	}
 	public String toString() {
-		return "Название аптеки: " + super.getPhName() + "\n Название лекарства: " + getMedecineName() + 
-		"\n Тип лекарства: " + getMedecineType() + "\n Цена лекарства: " + getMedecinePrice() + " руб" +
-		"\n Страна производитель: " + getOriginCountry() + "\n \n"; 
+		return "РќР°Р·РІР°РЅРёРµ Р°РїС‚РµРєРё: " + super.getPhName() + "\n РќР°Р·РІР°РЅРёРµ Р»РµРєР°СЂСЃС‚РІР°: " + getMedecineName() + 
+		"\n РўРёРї Р»РµРєР°СЂСЃС‚РІР°: " + getMedecineType() + "\n Р¦РµРЅР° Р»РµРєР°СЂСЃС‚РІР°: " + getMedecinePrice() + "СЂСѓР±" +
+		"\n РЎС‚Р°СЂР°РЅР° РїСЂРѕРёР·РІРѕРґРёС‚РµР»СЊ: " + getOriginCountry() + "\n \n"; 
 	}
 }

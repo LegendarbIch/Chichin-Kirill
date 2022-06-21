@@ -1,54 +1,51 @@
+/* 
+ * 
+ */
+
 package fourth;
 
 import java.util.ArrayList;
 
 public class TestPharmacy4 {
-	// Ìåòîä äîáàâëåíèÿ ëåêàðñòâ â ñïèñîê
+	// Метод добавления лекарств в список
 	public static void AddingToTheList() {
 		ArrayList<Pharmacy> medecineList = new ArrayList<>(); 
 		ListOfMedicines listofmedicines = new ListOfMedicines(medecineList);
 		
-		//Äîáàâëåíèå íîâîãî ëåêàðñòâà
+		//Добавление нового лекарства
 		PharMedecineFund pharmedecinefund1 = new PharMedecineFund();
-		pharmedecinefund1.setPhName("Çåëåíàÿ àïòåêà");
-		pharmedecinefund1.setMedecineName("Ãàëüöèâèí");
-		pharmedecinefund1.setMedecineType("Òèï Á");
+		pharmedecinefund1.setPhName("Зеленая аптека");
+		pharmedecinefund1.setMedecineName("Гальцивин");
+		pharmedecinefund1.setMedecineType("Тип Б");
 		pharmedecinefund1.setMedecinePrice(499);
-		pharmedecinefund1.setOriginCountry("Ãåðìàíèÿ");
+		pharmedecinefund1.setOriginCountry("Германия");
 		
 		listofmedicines.addList(pharmedecinefund1);
 		
-		//Äîáàâëåíèå íîâîãî ëåêàðñòâà
+		//Добавление нового лекарства
 		PharMedecineFund pharmedecinefund2 = new PharMedecineFund();
-		pharmedecinefund2.setPhName("Àïòåêà");
-		pharmedecinefund2.setMedecineName("Êîãàöåë");
-		pharmedecinefund2.setMedecineType("Òèï À");
+		pharmedecinefund2.setPhName("Аптека");
+		pharmedecinefund2.setMedecineName("Когацел");
+		pharmedecinefund2.setMedecineType("Тип А");
 		pharmedecinefund2.setMedecinePrice(600);
-		pharmedecinefund2.setOriginCountry("Øâåöèÿ");
+		pharmedecinefund2.setOriginCountry("Швеция");
 		
 		listofmedicines.addList(pharmedecinefund2);
 		
-		//Äîáàâëåíèå íîâîãî ëåêàðñòâà
-		
+		//Добавление нового лекарства
 		PharMedecineFund pharmedecinefund3 = new PharMedecineFund();
-		pharmedecinefund3.setPhName("Àïòåêà Âèòà");
-		pharmedecinefund3.setMedecineName("Íîøïà");
-		pharmedecinefund3.setMedecineType("Îò áîëè â ãîëîâå");
+		pharmedecinefund3.setPhName("Аптека Вита");
+		pharmedecinefund3.setMedecineName("Ношпа");
+		pharmedecinefund3.setMedecineType("От боли в голове");
 		pharmedecinefund3.setMedecinePrice(120);
-		pharmedecinefund3.setOriginCountry("Ðîññèÿ");
+		pharmedecinefund3.setOriginCountry("Россия");
 		
 		listofmedicines.addList(pharmedecinefund3);
 		
 		System.out.println(listofmedicines.getList());
 	}
-	public static void PharCustomers() {
-		PharÑustomers phcust = new PharÑustomers("Äàíèë", "Äàíèëîâ", "Äàíèëîâè÷", 20);
-		phcust.setPhName("Çåëåíàÿ àïòåêà");
-		System.out.println(phcust.toString());
-	}
 	public static void main(String[] args) {
 		
 		AddingToTheList();
-		PharCustomers();
 	}
 }

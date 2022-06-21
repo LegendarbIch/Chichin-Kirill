@@ -40,8 +40,8 @@ public class Pharmacy {
 	}
 	
 	public String toString() {
-		return "\n Имя аптеки: " + getPhName()
-		+ "\n Адрес: " + getAddress() + "\n Город: " + getCity() 
-		+ "\n ФИО Директора: " + getDirectorLPF();
+		return "\n РќР°Р·РІР°РЅРёРµ Р°РїС‚РµРєРё: " + getPhName()
+		+ "\n РђРґСЂРµСЃСЃ: " + getAddress() + "\n Р“РѕСЂРѕРґ: " + getCity() 
+		+ "\n Р¤РРћ РґРёСЂРµРєС‚РѕСЂР°: " + getDirectorLPF();
 	}
 }

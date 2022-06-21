@@ -3,46 +3,47 @@ package fourth;
 import java.util.ArrayList;
 
 public class TestPharmacy4 {
-	// Метод добавления лекарств в список
+	// ГЊГҐГІГ®Г¤ Г¤Г®ГЎГ ГўГ«ГҐГ­ГЁГї Г«ГҐГЄГ Г°Г±ГІГў Гў Г±ГЇГЁГ±Г®ГЄ
 	public static void AddingToTheList() {
 		ArrayList<Pharmacy> medecineList = new ArrayList<>(); 
 		ListOfMedicines listofmedicines = new ListOfMedicines(medecineList);
 		
-		//Добавление нового лекарства
+		//Г„Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ Г­Г®ГўГ®ГЈГ® Г«ГҐГЄГ Г°Г±ГІГўГ 
 		PharMedecineFund pharmedecinefund1 = new PharMedecineFund();
-		pharmedecinefund1.setPhName("Зеленая аптека");
-		pharmedecinefund1.setMedecineName("Гальцивин");
-		pharmedecinefund1.setMedecineType("Тип Б");
+		pharmedecinefund1.setPhName("Г‡ГҐГ«ГҐГ­Г Гї Г ГЇГІГҐГЄГ ");
+		pharmedecinefund1.setMedecineName("ГѓГ Г«ГјГ¶ГЁГўГЁГ­");
+		pharmedecinefund1.setMedecineType("Г’ГЁГЇ ГЃ");
 		pharmedecinefund1.setMedecinePrice(499);
-		pharmedecinefund1.setOriginCountry("Германия");
+		pharmedecinefund1.setOriginCountry("ГѓГҐГ°Г¬Г Г­ГЁГї");
 		
 		listofmedicines.addList(pharmedecinefund1);
 		
-		//Добавление нового лекарства
+		//Г„Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ Г­Г®ГўГ®ГЈГ® Г«ГҐГЄГ Г°Г±ГІГўГ 
 		PharMedecineFund pharmedecinefund2 = new PharMedecineFund();
-		pharmedecinefund2.setPhName("Аптека");
-		pharmedecinefund2.setMedecineName("Когацел");
-		pharmedecinefund2.setMedecineType("Тип А");
+		pharmedecinefund2.setPhName("ГЂГЇГІГҐГЄГ ");
+		pharmedecinefund2.setMedecineName("ГЉГ®ГЈГ Г¶ГҐГ«");
+		pharmedecinefund2.setMedecineType("Г’ГЁГЇ ГЂ");
 		pharmedecinefund2.setMedecinePrice(600);
-		pharmedecinefund2.setOriginCountry("Швеция");
+		pharmedecinefund2.setOriginCountry("ГГўГҐГ¶ГЁГї");
 		
 		listofmedicines.addList(pharmedecinefund2);
 		
-		//Добавление нового лекарства
+		//Г„Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ Г­Г®ГўГ®ГЈГ® Г«ГҐГЄГ Г°Г±ГІГўГ 
+		
 		PharMedecineFund pharmedecinefund3 = new PharMedecineFund();
-		pharmedecinefund3.setPhName("Аптека Вита");
-		pharmedecinefund3.setMedecineName("Ношпа");
-		pharmedecinefund3.setMedecineType("От боли в голове");
+		pharmedecinefund3.setPhName("ГЂГЇГІГҐГЄГ  Г‚ГЁГІГ ");
+		pharmedecinefund3.setMedecineName("ГЌГ®ГёГЇГ ");
+		pharmedecinefund3.setMedecineType("ГЋГІ ГЎГ®Г«ГЁ Гў ГЈГ®Г«Г®ГўГҐ");
 		pharmedecinefund3.setMedecinePrice(120);
-		pharmedecinefund3.setOriginCountry("Россия");
+		pharmedecinefund3.setOriginCountry("ГђГ®Г±Г±ГЁГї");
 		
 		listofmedicines.addList(pharmedecinefund3);
 		
 		System.out.println(listofmedicines.getList());
 	}
 	public static void PharCustomers() {
-		PharСustomers phcust = new PharСustomers("Данил", "Данилов", "Данилович", 20);
-		phcust.setPhName("Зеленая аптека");
+		PharГ‘ustomers phcust = new PharГ‘ustomers("Г„Г Г­ГЁГ«", "Г„Г Г­ГЁГ«Г®Гў", "Г„Г Г­ГЁГ«Г®ГўГЁГ·", 20);
+		phcust.setPhName("Г‡ГҐГ«ГҐГ­Г Гї Г ГЇГІГҐГЄГ ");
 		System.out.println(phcust.toString());
 	}
 	public static void main(String[] args) {

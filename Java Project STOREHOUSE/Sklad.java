@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public class Sklad {
     ArrayList<Product> products = new ArrayList<>();
-    public void AddNewProduct(String ProviderName, String ProductName, int ProductArticle ) {
+    public void AddNewProduct() {
         Scanner console = new Scanner(System.in);
         System.out.print("Введите название поставщика: ");
         String providerName = console.nextLine();

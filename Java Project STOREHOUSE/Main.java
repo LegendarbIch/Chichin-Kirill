@@ -9,7 +9,8 @@ public class Main {
     }
     public static void Menu() {
         System.out.println("Выберите, что хотите сделать:  1. Добавить товар на склад" + "\n" +
-                           "                               2. Отпустить товар покупателю" + "\n");
+                           "                               2. Отпустить товар покупателю" + "\n" +
+                           "                               3. Выйти из программы" + "\n");
         Scanner console = new Scanner(System.in);
         int number = console.nextInt();
         if (number == 1) {
@@ -28,6 +29,8 @@ public class Main {
             }
         } else if (number == 2) {
 
+        } else if (number == 3) {
+            System.exit(0);
         }
     }
     public static void main(String[] args) {

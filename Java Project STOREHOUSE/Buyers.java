@@ -18,4 +18,7 @@ public class Buyers extends Buyer{
         }
         return null;
     }
+    public String getBuyer(int n) {
+        return buyers.get(n);
+    }
 }

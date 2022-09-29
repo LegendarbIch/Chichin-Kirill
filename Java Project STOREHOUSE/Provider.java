@@ -2,29 +2,25 @@ import java.util.ArrayList;
 
 // Класс поставщик
 public class Provider {
-    public Provider(String providerName) {
-        ProviderName = providerName;
+    private static ArrayList providers = new ArrayList<>();
+    private static String ProviderName;
+    public Provider(String ProviderName) {
+        this.ProviderName = ProviderName;
     }
 
-    private String ProviderName;
 
-    public String getProviderName() {
+    public static String getProviderName() {
         return ProviderName;
     }
 
-    public void setProviderName(String providerName) {
+
+    public static void setProviderName(String providerName) {
         ProviderName = providerName;
+        providers.add(ProviderName);
+
+    }
+    public static void ShowListProviderName() {
+        System.out.print(providers);
     }
 
-  /*  ArrayList<Provider> providers = new ArrayList<>();
-    public void AddNewProvider(String providerName) {
-
-        providers.add(new Product(providerName));
-
-        for (Provider provider: providers) {
-            System.out.println("Поставщик: "
-        }
-        AddNewProduct("ООО Стройбат","Моноблок", 10);
-        AddNewProduct("Игрушкаленд","Мишка плюшевый", 11);
-    }*/
 }

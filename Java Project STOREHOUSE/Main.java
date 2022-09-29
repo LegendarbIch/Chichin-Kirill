@@ -2,17 +2,26 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
+    static Sklad sklad = new Sklad();
     public static void  AddingProduct() {
-        Sklad sklad = new Sklad();
         sklad.AddNewProduct();
         sklad.toString();
+    }
+    public static void GivingProduct() {
+        sklad.GiveBuyerProduct();
     }
     public static void Menu() {
         System.out.println("Выберите, что хотите сделать:  1. Добавить товар на склад" + "\n" +
                            "                               2. Отпустить товар покупателю" + "\n" +
-                           "                               3. Выйти из программы" + "\n");
+                           "                               3. Получение информации о доступных позициях товара" + "\n" +
+                           "                               4. Получение информации о наличии товара на складе" +  "\n" +
+                           "                               5. Группировка товаров по видам" + "\n" +
+                           "                               6. Получение информации по поставщикам" + "\n" +
+                           "                               7. Получение информации по покупателям" + "\n" +
+                           "                               8. Выйти из программы" + "\n");
         Scanner console = new Scanner(System.in);
         int number = console.nextInt();
+        // если добавлять товар
         if (number == 1) {
             AddingProduct();
             int number2 = 0;
@@ -27,9 +36,10 @@ public class Main {
                     Menu();
                 }
             }
+            // если отпускать покупателю
         } else if (number == 2) {
-
-        } else if (number == 3) {
+            GivingProduct();
+        } else if (number == 8) {
             System.exit(0);
         }
     }

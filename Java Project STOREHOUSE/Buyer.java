@@ -1,4 +1,3 @@
-
 // класс Покупатель
 public class Buyer {
     private String FIO;
@@ -6,7 +5,7 @@ public class Buyer {
     public void setFIO(String FIO) {
         this.FIO = FIO;
     }
-    public String  getFIO() { return FIO; }
 
+    public String getFIO() { return FIO; }
 
 }

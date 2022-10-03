@@ -3,70 +3,79 @@ import java.util.Scanner;
 public class Sklad {
     private ArrayList<Technic> technic = new ArrayList<>();
     private ArrayList<BuildingMaterials> buildingMaterials = new ArrayList<>();
-    private ArrayList<ArrayList<String>> ProductAtTheBuyers = new ArrayList<ArrayList<String>>();
 
-    private Buyers buyer = new Buyers();
+    private ArrayList<Buyer> buyers = new ArrayList<>();
+
     Scanner console = new Scanner(System.in);
 
-    public void AddNewProduct() {
+//    public void AddNewProduct(String Name,String productName,int productArticle,int price) {
+//        System.out.print("Какой тип товара вы хотите добавить?  1.Техника   2.Строительные материалы");
+//        int num = console.nextInt();
+//        console.nextLine();
+//        if (num == 1) {
+//            technic.add(new Technic(Name, productName, productArticle, price));
+//        } else if (num == 2) {
+//            buildingMaterials.add(new BuildingMaterials(Name,productName,productArticle,price));
+//        }
 
-        System.out.print("Какой тип товара вы хотите добавить?  1.Техника   2.Строительные материалы");
-        int num = console.nextInt();
-        console.nextLine();
-        System.out.print("Введите поставщика: ");
-        String Name = console.nextLine();
-        Provider.setProviderName(Name);
-        System.out.print("Введите товар: ");
-        String productName = console.nextLine();
-        System.out.print("Введите артикль товара: ");
-        int productArticle = console.nextInt();
-        System.out.print("Введите цену товара: ");
-        int price = console.nextInt();
-        if (num == 1) {
-            technic.add(new Technic(Name, productName, productArticle, price));
-        } else if (num == 2) {
-            buildingMaterials.add(new BuildingMaterials(Name,productName,productArticle,price));
-        }
-
+//    }
+    public ArrayList<Technic> AddToTech(String Type1, String Name,String productName,int productArticle,int price) {
+        technic.add(new Technic(Type1, Name, productName, productArticle, price));
+        return technic;
     }
-    private void ExampleOutput(Product product) {
-        System.out.println("Поставщик: " + Provider.getProviderName() + "\n" +
-                "Товар: " + product.getProductName() + "\n" +
-                "Артикль товара: " + product.getProductArticle() + "\n" +
-                "Цена товара: " + product.getPrice() + "\n");
+    public ArrayList<BuildingMaterials> AddToBM(String Type1,String Name,String productName,int productArticle,int price) {
+        buildingMaterials.add(new BuildingMaterials(Type1 , Name, productName, productArticle, price));
+        return buildingMaterials;
     }
+    public void AddingBuyerToTheList(String fio) {
+        buyers.add(new Buyer(fio));
+    }
+//    private void ExampleProductOutput(Product product) {
+//        System.out.println("Тип: " + product.getType1() + "\n" +
+//                "Поставщик: " + Provider.getProviderName() + "\n" +
+//                "Товар: " + product.getProductName() + "\n" +
+//                "Артикль товара: " + product.getProductArticle() + "\n" +
+//                "Цена товара: " + product.getPrice() + "\n");
+//    }
+//    public void ExampleBuyerOutput(Buyer buyer) {
+//        System.out.println("Покупатель: " + buyer.getFIO());
+//
+//    }
     public void toStringTechnic() {
-        for (Product product : technic) {
-            ExampleOutput(product);
+        for (Technic technic : technic) {
+            technic.toString();
         }
     }
     public void toStringBM() {
-        for (Product product : buildingMaterials) {
-            ExampleOutput(product);
+        for (BuildingMaterials buildingMaterials1 : buildingMaterials) {
+            buildingMaterials1.toString();
         }
     }
-
-    public void GiveBuyerProduct(int productId, int buyerId) {
-        ArrayList<String> Total = new ArrayList<>();
-        Total.add(String.valueOf(buyer.getBuyer(buyerId)));
-        int num = console.nextInt();
-        if (num == 1) {
-            Total.add(String.valueOf(technic.get(productId)));
-        } else if (num == 2) {
-            Total.add(String.valueOf(buildingMaterials.get(buyerId)));
+    public void toStringBuyers() {
+        for (Buyer buyer : buyers) {
+            buyer.toString();
         }
+    }
+    public void GiveBuyerProductOnTechnic(int productId, int buyerId) {
+        for (Buyer buyer : buyers) {
+            buyer.products.add(technic.get(0));
+        }
+        for (Buyer buyer : buyers) {
+            System.out.print( buyer.getFIO() + "\n  ");
+            for (Product product : buyer.products) {
+                System.out.println(product.toString());
+            }
+        }
+    }
+    public void GiveBuyerProductOnBuildMaterial(int productId, int buyerId) {
 
-        ProductAtTheBuyers.add(Total);
     }
 
-    public void AddNewBuyer() {
-        String buyerFIO = console.nextLine();
-        buyer.AddingBuyerToTheList();
-    }
-    public void ShowBuyers() {
-        buyer.getBuyers();
-    }
     public void getBuyersProduct() {
-        System.out.print(ProductAtTheBuyers);
+       System.out.println(buyers);
     }
+    public Buyer getBuyer(int n) {
+        return buyers.get(n);
+    }
+
 }

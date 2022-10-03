@@ -1,14 +1,21 @@
 // класс Товар
 public class Product extends Provider {
+
+
     private String ProductName;
+
+
     private int ProductArticle;
     private int Price;
 
-    public Product(String ProviderName, String ProductName, int ProductArticle, int Price) {
+    private String Type1;
+
+    public Product(String Type1, String ProviderName, String ProductName, int ProductArticle, int Price) {
         super(ProviderName);
         this.ProductName = ProductName;
         this.ProductArticle = ProductArticle;
         this.Price = Price;
+        this.Type1 = Type1;
     }
 
     public String getProductName() {
@@ -30,5 +37,14 @@ public class Product extends Provider {
     public int getPrice() {return Price;}
 
     public void setPrice(int price) {Price = price;}
+
+    public String getType1() {
+        return Type1;
+    }
+
+    public void setType1(String type1) {
+        Type1 = type1;
+    }
+
 
 }

@@ -5,8 +5,7 @@ public class Sklad {
     private ArrayList<BuildingMaterials> buildingMaterials = new ArrayList<>();
     private ArrayList<Buyer> buyers = new ArrayList<>();
 
-    Scanner console = new Scanner(System.in);
-
+   
     public ArrayList<Technic> AddToTech(String Type1, String Name,String productName,int productArticle,int count, int price) {
         technic.add(new Technic(Type1, Name, productName, productArticle, count, price));
         return technic;
@@ -41,20 +40,26 @@ public class Sklad {
     }
 
     public void GiveBuyerProductOnTechnic(int productId, int buyerId, int count) {
-
-
+        Product product = technic.get(productId);
+        int c = product.getCount();
+        product.setCount(count);
         buyers.get(buyerId).products.add(technic.get(productId));
+        product.setCount(c - count);
     }
     public void GiveBuyerProductOnBuildMaterial(int productId, int buyerId, int count) {
+        Product product = buildingMaterials.get(productId);
+        int c = product.getCount();
+        product.setCount(count);
         buyers.get(buyerId).products.add(buildingMaterials.get(productId));
+        product.setCount(c - count);
     }
 
-    public void getBuyersProduct(int buyerId) {
-
+    public void getBuyersProduct() {
+        int i = 1;
         for (Buyer buyer : buyers) {
-            System.out.println( buyer.getFIO() + "\n");
+            System.out.println( (i++) + ". " + buyer.getFIO() + "\n");
             for (Product product : buyer.products) {
-                System.out.println(product.toString());
+                System.out.println("Отправленный товар:\n" + product.toString() + "\n");
             }
         }
     }

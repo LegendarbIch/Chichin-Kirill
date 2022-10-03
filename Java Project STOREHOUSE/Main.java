@@ -1,3 +1,4 @@
+import javax.lang.model.element.Name;
 import java.util.Scanner;
 
 public class Main {
@@ -55,7 +56,7 @@ public class Main {
             System.out.print("Какое количество товара отправить покупателю? \n");
             int product_count = console.nextInt();
             GivingBuyerProductOnTech(prod_id, bu_id - 1, product_count);
-            sklad.getBuyersProduct(bu_id-1);
+
         } else if (num == 2) {
             System.out.print("Какой товар отправить покупателю? \n" + "Выбор происходит по артиклю \n");
             sklad.toStringBM();
@@ -63,7 +64,6 @@ public class Main {
             System.out.print("Какое количество товара отправить покупателю? \n");
             int product_count = console.nextInt();
             GivingBuyerProductOnBM(prod_id, bu_id - 1, product_count);
-            sklad.getBuyersProduct(bu_id-1);
         }
         System.out.print("Отправить еще?  1.Да \n" +
                          "                2.Нет");
@@ -79,6 +79,7 @@ public class Main {
                          "2.Отпустить товар      \n" +
                          "3.Обратно              \n");
         int num = console.nextInt();
+        console.nextLine();
         if (num == 1) {
             int k = 1;
             System.out.print("Введите покупателя или покупателей: \n");
@@ -88,7 +89,7 @@ public class Main {
                 String FIO = console.nextLine();
                 sklad.AddingBuyerToTheList(FIO);
                 System.out.print("Дальше? 1.Да \n" +
-                        "        2.Нет  ");
+                                 "        2.Нет  ");
                 num = console.nextInt();
                 if (num == 2) {
                     MenuAddBuyer();
@@ -127,7 +128,14 @@ public class Main {
             }
             // если отпускать покупателю
         } else if (number == 2) {
-                MenuAddBuyer();
+            MenuAddBuyer();
+        } else if (number==3) {
+            sklad.toStringTechnic();
+            sklad.toStringBM();
+            Menu();
+        } else if (number == 7) {
+            sklad.getBuyersProduct();
+            Menu();
         } else if (number == 8) {
             System.exit(0);
         }

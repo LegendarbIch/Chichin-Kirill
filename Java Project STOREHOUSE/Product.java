@@ -4,7 +4,6 @@ public class Product extends Provider {
 
     private String ProductName;
 
-
     private int ProductArticle;
     private int Price;
 

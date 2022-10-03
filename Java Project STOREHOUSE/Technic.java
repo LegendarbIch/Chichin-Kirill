@@ -3,8 +3,8 @@ public class Technic extends Product{
         super(Type1, ProviderName,ProductName, ProductArticle, Count, Price);
     }
     public String toString() {
-        return "Название: " + getProductName() + '\n' +
-                "Поставщик" + getProviderName() + "\n" +
+        return  "\nНазвание: " + getProductName() + '\n' +
+                "Поставщик: " + getProviderName() + "\n" +
                 "Артикль продукта: " + getProductArticle() + "\n" +
                 "Цена: " + getPrice() + "\n" +
                 "Тип: " + getType1() + '\n' +

@@ -10,11 +10,14 @@ public class Product extends Provider {
 
     private String Type1;
 
-    public Product(String Type1, String ProviderName, String ProductName, int ProductArticle, int Price) {
+    private int Count;
+
+    public Product(String Type1, String ProviderName, String ProductName, int ProductArticle, int Count ,int Price) {
         super(ProviderName);
         this.ProductName = ProductName;
         this.ProductArticle = ProductArticle;
         this.Price = Price;
+        this.Count = Count;
         this.Type1 = Type1;
     }
 
@@ -44,6 +47,14 @@ public class Product extends Provider {
 
     public void setType1(String type1) {
         Type1 = type1;
+    }
+
+    public int getCount() {
+        return Count;
+    }
+
+    public void setCount(int count) {
+        Count = count;
     }
 
 

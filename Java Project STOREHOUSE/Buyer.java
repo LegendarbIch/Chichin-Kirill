@@ -3,8 +3,6 @@ import java.util.ArrayList;
 // класс Покупатель
 public class Buyer {
 
-
-
     private String FIO;
     public ArrayList<Product> products = new ArrayList<>();
     public Buyer (String FIO) {
@@ -16,10 +14,7 @@ public class Buyer {
 
     public String getFIO() { return FIO; }
 
-    @Override
-    public String toString() {
-        return "Buyer{" +
-                "ФИО покупателя:'" + FIO + '\'' +
-                '}';
+    public String toString(int k) {
+        return (k++) + ". " + FIO + "\n";
     }
 }

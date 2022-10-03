@@ -3,79 +3,61 @@ import java.util.Scanner;
 public class Sklad {
     private ArrayList<Technic> technic = new ArrayList<>();
     private ArrayList<BuildingMaterials> buildingMaterials = new ArrayList<>();
-
     private ArrayList<Buyer> buyers = new ArrayList<>();
 
     Scanner console = new Scanner(System.in);
 
-//    public void AddNewProduct(String Name,String productName,int productArticle,int price) {
-//        System.out.print("Какой тип товара вы хотите добавить?  1.Техника   2.Строительные материалы");
-//        int num = console.nextInt();
-//        console.nextLine();
-//        if (num == 1) {
-//            technic.add(new Technic(Name, productName, productArticle, price));
-//        } else if (num == 2) {
-//            buildingMaterials.add(new BuildingMaterials(Name,productName,productArticle,price));
-//        }
-
-//    }
-    public ArrayList<Technic> AddToTech(String Type1, String Name,String productName,int productArticle,int price) {
-        technic.add(new Technic(Type1, Name, productName, productArticle, price));
+    public ArrayList<Technic> AddToTech(String Type1, String Name,String productName,int productArticle,int count, int price) {
+        technic.add(new Technic(Type1, Name, productName, productArticle, count, price));
         return technic;
     }
-    public ArrayList<BuildingMaterials> AddToBM(String Type1,String Name,String productName,int productArticle,int price) {
-        buildingMaterials.add(new BuildingMaterials(Type1 , Name, productName, productArticle, price));
+    public ArrayList<BuildingMaterials> AddToBM(String Type1,String Name,String productName,int productArticle, int count ,int price) {
+        buildingMaterials.add(new BuildingMaterials(Type1 , Name, productName, productArticle, count, price));
         return buildingMaterials;
     }
-    public void AddingBuyerToTheList(String fio) {
+    public ArrayList<Buyer> AddingBuyerToTheList(String fio) {
         buyers.add(new Buyer(fio));
+        return buyers;
     }
-//    private void ExampleProductOutput(Product product) {
-//        System.out.println("Тип: " + product.getType1() + "\n" +
-//                "Поставщик: " + Provider.getProviderName() + "\n" +
-//                "Товар: " + product.getProductName() + "\n" +
-//                "Артикль товара: " + product.getProductArticle() + "\n" +
-//                "Цена товара: " + product.getPrice() + "\n");
-//    }
-//    public void ExampleBuyerOutput(Buyer buyer) {
-//        System.out.println("Покупатель: " + buyer.getFIO());
-//
-//    }
-    public void toStringTechnic() {
+
+    public Technic toStringTechnic() {
         for (Technic technic : technic) {
-            technic.toString();
+            System.out.print(technic.toString());
         }
+        return null;
     }
-    public void toStringBM() {
+    public BuildingMaterials toStringBM() {
         for (BuildingMaterials buildingMaterials1 : buildingMaterials) {
-            buildingMaterials1.toString();
+            System.out.print(buildingMaterials1.toString());
         }
+        return null;
     }
-    public void toStringBuyers() {
+    public Buyer toStringBuyers() {
+        int k = 1;
         for (Buyer buyer : buyers) {
-            buyer.toString();
+            System.out.print(buyer.toString(k++));
         }
+        return null;
     }
-    public void GiveBuyerProductOnTechnic(int productId, int buyerId) {
+
+    public void GiveBuyerProductOnTechnic(int productId, int buyerId, int count) {
+
+
+        buyers.get(buyerId).products.add(technic.get(productId));
+    }
+    public void GiveBuyerProductOnBuildMaterial(int productId, int buyerId, int count) {
+        buyers.get(buyerId).products.add(buildingMaterials.get(productId));
+    }
+
+    public void getBuyersProduct(int buyerId) {
+
         for (Buyer buyer : buyers) {
-            buyer.products.add(technic.get(0));
-        }
-        for (Buyer buyer : buyers) {
-            System.out.print( buyer.getFIO() + "\n  ");
+            System.out.println( buyer.getFIO() + "\n");
             for (Product product : buyer.products) {
                 System.out.println(product.toString());
             }
         }
     }
-    public void GiveBuyerProductOnBuildMaterial(int productId, int buyerId) {
 
-    }
-
-    public void getBuyersProduct() {
-       System.out.println(buyers);
-    }
-    public Buyer getBuyer(int n) {
-        return buyers.get(n);
-    }
 
 }

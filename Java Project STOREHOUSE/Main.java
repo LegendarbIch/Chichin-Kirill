@@ -1,29 +1,29 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     static Sklad sklad = new Sklad();
     static Scanner console = new Scanner(System.in);
-    public static void  AddingProductToTech(String Name,String productName,int productArticle,int price) {
+    public static void  AddingProductToTech(String Name,String productName,int productArticle,int count, int price) {
 
-        sklad.AddToTech("Техника", Name,productName,productArticle,price);
-
-    }
-    public static void  AddingProductToBuildMaterials(String Name, String productName, int productArticle, int price) {
-
-        sklad.AddToBM("Строительные материалы", Name , productName,productArticle,price);
+        sklad.AddToTech("Техника", Name,productName,productArticle, count, price);
 
     }
-    public static void GivingBuyerProductOnTech(int ProductId, int BuyerId) {
-        sklad.GiveBuyerProductOnTechnic(ProductId, BuyerId);
+    public static void  AddingProductToBuildMaterials(String Name, String productName, int productArticle,int count, int price) {
+
+        sklad.AddToBM("Строительные материалы", Name , productName,productArticle, count, price);
+
     }
-    public static void GivingBuyerProductOnBM(int ProductId, int BuyerId ) {
-        sklad.GiveBuyerProductOnBuildMaterial(ProductId, BuyerId);
+    public static void GivingBuyerProductOnTech(int ProductId, int BuyerId, int count) {
+        sklad.GiveBuyerProductOnTechnic(ProductId, BuyerId, count);
+    }
+    public static void GivingBuyerProductOnBM(int ProductId, int BuyerId, int count ) {
+        sklad.GiveBuyerProductOnBuildMaterial(ProductId, BuyerId, count);
     }
 
     public static void AddingProducts(){
         System.out.print("Какой тип товара вы хотите добавить?  1.Техника   2.Строительные материалы");
         int number = console.nextInt();
+        console.nextLine();
         System.out.print("Введите поставщика: ");
         String Name = console.nextLine();
         Provider.setProviderName(Name);
@@ -31,17 +31,53 @@ public class Main {
         String productName = console.nextLine();
         System.out.print("Введите артикль товара: ");
         int productArticle = console.nextInt();
+        System.out.print("Введите количество товара: ");
+        int count = console.nextInt();
         System.out.print("Введите цену товара: ");
         int price = console.nextInt();
         if (number == 1) {
-            AddingProductToTech(Name, productName, productArticle, price);
+            AddingProductToTech(Name, productName, productArticle, count, price);
         } else if (number == 2) {
-            AddingProductToBuildMaterials(Name, productName, productArticle, price);
+            AddingProductToBuildMaterials(Name, productName, productArticle, count, price);
+        }
+    }
+    public static void Repeat() {
+        System.out.print("Какому покупателю вы хотите отправить товар?\n");
+        sklad.toStringBuyers();
+        int bu_id = console.nextInt();
+        System.out.print("Из какой категории товаров отправить ?     1.Техника\n" +
+                         "                                           2.Строильтельные материалы            ");
+        int num = console.nextInt();
+        if (num == 1) {
+            System.out.print("Какой товар отправить покупателю? \n" + "Выбор происходит по артиклю \n");
+            sklad.toStringTechnic();
+            int prod_id = console.nextInt();
+            System.out.print("Какое количество товара отправить покупателю? \n");
+            int product_count = console.nextInt();
+            GivingBuyerProductOnTech(prod_id, bu_id - 1, product_count);
+            sklad.getBuyersProduct(bu_id-1);
+        } else if (num == 2) {
+            System.out.print("Какой товар отправить покупателю? \n" + "Выбор происходит по артиклю \n");
+            sklad.toStringBM();
+            int prod_id = console.nextInt();
+            System.out.print("Какое количество товара отправить покупателю? \n");
+            int product_count = console.nextInt();
+            GivingBuyerProductOnBM(prod_id, bu_id - 1, product_count);
+            sklad.getBuyersProduct(bu_id-1);
+        }
+        System.out.print("Отправить еще?  1.Да \n" +
+                         "                2.Нет");
+        num = console.nextInt();
+        if(num==1) {
+            Repeat();
+        } else {
+            MenuAddBuyer();
         }
     }
     public static void MenuAddBuyer() {
         System.out.print("1.Добавить покупателя  \n" +
-                         "2.Отпустить товар       ");
+                         "2.Отпустить товар      \n" +
+                         "3.Обратно              \n");
         int num = console.nextInt();
         if (num == 1) {
             int k = 1;
@@ -59,25 +95,9 @@ public class Main {
                 }
             }
         } else if (num==2) {
-            System.out.print("Какому покупателю вы хотите отправить товар? \n ");
-            sklad.toStringBuyers();
-            int bu_id = console.nextInt();
-            System.out.print("Из какой категории товаров отправить ?     1.Техника\n" +
-                             "                                           2.Строильтельные материалы            ");
-            num = console.nextInt();
-            if (num == 1) {
-                System.out.print("Какой товар отправить покупателю? \n" + "Выбор происходит по артиклю \n");
-                sklad.toStringTechnic();
-                int prod_id = console.nextInt();
-                GivingBuyerProductOnTech(prod_id, bu_id - 1);
-                sklad.getBuyersProduct();
-            } else if (num == 2) {
-                System.out.print("Какой товар отправить покупателю? \n" + "Выбор происходит по артиклю \n");
-                sklad.toStringBM();
-                int prod_id = console.nextInt();
-                GivingBuyerProductOnBM(prod_id, bu_id - 1);
-                sklad.getBuyersProduct();
-            }
+            Repeat();
+        } else if (num==3) {
+            Menu();
         }
     }
     public static void Menu() {
@@ -114,12 +134,13 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        AddingProductToBuildMaterials("Строй", "Доски", 0, 120);
-        AddingProductToTech("Avo", "компьютер", 0, 30000);
-        AddingProductToTech("Techno", "Джостик", 1, 1200);
+        AddingProductToBuildMaterials("Строй", "Доски", 0, 3,120);
+        AddingProductToBuildMaterials("Build", "Кирпичи", 1, 10, 300);
+        AddingProductToTech("Avo", "компьютер", 0, 1, 30000);
+        AddingProductToTech("Techno", "Джостик", 1, 2, 1200);
+        AddingProductToTech("NanoTECH", "Микрочипы", 2, 100, 7000);
         sklad.AddingBuyerToTheList("Кирилл");
         sklad.AddingBuyerToTheList("Б.О. Валин");
-        sklad.GiveBuyerProductOnTechnic(1,1);
         Menu();
 
     }

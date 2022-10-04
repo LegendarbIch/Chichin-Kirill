@@ -4,6 +4,7 @@ import java.util.ArrayList;
 public class Buyer {
 
     private String FIO;
+    private String BuyerId;
     public ArrayList<Product> products = new ArrayList<>();
     public Buyer (String FIO) {
         this.FIO = FIO;
@@ -16,5 +17,12 @@ public class Buyer {
 
     public String toString(int k) {
         return (k++) + ". " + FIO + "\n";
+    }
+
+    public String getBuyerId() {
+        return BuyerId;
+    }
+    public void setBuyerId(String buyerId) {
+        BuyerId = buyerId;
     }
 }

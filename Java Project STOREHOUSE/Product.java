@@ -1,23 +1,18 @@
 // класс Товар
 public class Product extends Provider {
-
-
     private String ProductName;
-
     private int ProductArticle;
     private int Price;
-
-    private String Type1;
-
+    private String ProductType;
     private int Count;
 
-    public Product(String Type1, String ProviderName, String ProductName, int ProductArticle, int Count ,int Price) {
+    public Product(String ProductType, String ProviderName, String ProductName, int ProductArticle, int Count ,int Price) {
         super(ProviderName);
         this.ProductName = ProductName;
         this.ProductArticle = ProductArticle;
         this.Price = Price;
         this.Count = Count;
-        this.Type1 = Type1;
+        this.ProductType = ProductType;
     }
 
     public String getProductName() {
@@ -40,12 +35,12 @@ public class Product extends Provider {
 
     public void setPrice(int price) {Price = price;}
 
-    public String getType1() {
-        return Type1;
+    public String getProductType() {
+        return ProductType;
     }
 
-    public void setType1(String type1) {
-        Type1 = type1;
+    public void setProductType(String type1) {
+        ProductType = type1;
     }
 
     public int getCount() {
@@ -56,5 +51,14 @@ public class Product extends Provider {
         Count = count;
     }
 
-
+    @Override
+    public String toString() {
+        return "Product{" +
+                "ProductName='" + ProductName + '\'' +
+                ", ProductArticle=" + ProductArticle +
+                ", Price=" + Price +
+                ", ProductType='" + ProductType + '\'' +
+                ", Count=" + Count +
+                '}';
+    }
 }

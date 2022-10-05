@@ -1,15 +1,16 @@
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Scanner;
+
 public class Sklad {
     private ArrayList<Product> products = new ArrayList<>();;
     private ArrayList<Buyer> buyers = new ArrayList<>();
-    public void AddToProduct(String ProductType, String Name, String productName, int productArticle, int count, int price) {
-        this.products.add(new Product(ProductType, Name, productName, productArticle, count, price));
 
+    private ArrayList<Order> orders = new ArrayList<>();
+
+    public void AddToProduct(String ProductType, String ProductName, String productName, int productArticle, int price) {
+        this.products.add(new Product(ProductType, ProductName, productName, productArticle, price));
     }
-    public ArrayList<Buyer> AddingBuyerToTheList(String fio) {
-        buyers.add(new Buyer(fio));
+    public ArrayList<Buyer> AddingBuyerToTheList(String fio, int buyerid) {
+        buyers.add(new Buyer(fio, buyerid));
         return buyers;
     }
 
@@ -27,14 +28,17 @@ public class Sklad {
         }
         return null;
     }
-    public void GiveBuyerProduct(int productId, int buyerId, int count) {
-        Product product = products.get(productId);
-        int c = product.getCount();
-        product.setCount(count);
-        buyers.get(buyerId).products.add(product);
-        product.setCount(c - count);
-    }
+//    public void GiveBuyerProduct(int productId, int buyerId) {
+//        Product product = products.get(productId);
+//        int c = product.getCount();
+//        product.setCount(count);
+//        buyers.get(buyerId).products.add(product);
+//        product.setCount(c - count);
+//    }
 
+    public void GiveBuyerProduct(int OrderID, int BuyerID, int ProductID, ArrayList<Product> Products) {
+        orders.add(new Order(OrderID, BuyerID, ProductID, Products));
+    }
     public void getBuyersProduct() {
         int i = 1;
         for (Buyer buyer : buyers) {
@@ -44,11 +48,11 @@ public class Sklad {
             }
         }
     }
-    public Product getProductByID(int id) {
-        Product current = null;
+    public ArrayList<Product> getProductByID(int id) {
+        ArrayList<Product> current = new ArrayList<>();
         for(Product product: products) {
             if (id == product.getProductArticle()) {
-                current = product;
+                current.add(products.get(id));
                 break;
             }
         }

@@ -4,10 +4,11 @@ import java.util.ArrayList;
 public class Buyer {
 
     private String FIO;
-    private String BuyerId;
+    private int BuyerId;
     public ArrayList<Product> products = new ArrayList<>();
-    public Buyer (String FIO) {
+    public Buyer (String FIO, int BuyerId) {
         this.FIO = FIO;
+        this.BuyerId = BuyerId;
     }
     public void setFIO(String FIO) {
         this.FIO = FIO;
@@ -19,10 +20,10 @@ public class Buyer {
         return (k++) + ". " + FIO + "\n";
     }
 
-    public String getBuyerId() {
+    public int getBuyerId() {
         return BuyerId;
     }
-    public void setBuyerId(String buyerId) {
+    public void setBuyerId(int buyerId) {
         BuyerId = buyerId;
     }
 }

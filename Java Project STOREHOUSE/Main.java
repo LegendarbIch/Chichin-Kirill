@@ -7,7 +7,7 @@ public class Main {
 
     static ProductType productType;
     static int productArticle = 1;
-
+    static int BuyerID = 1;
 
     public static void Repeat() {
         System.out.print("Какому покупателю вы хотите отправить товар?\n");
@@ -18,7 +18,6 @@ public class Main {
         int prod_id = console.nextInt();
         System.out.print("Какое количество товара отправить покупателю? \n");
         int product_count = console.nextInt();
-        sklad.GiveBuyerProduct(prod_id, bu_id - 1, product_count);
         System.out.print("Отправить еще?  1.Да \n" +
                          "                2.Нет");
         int num = console.nextInt();
@@ -41,7 +40,9 @@ public class Main {
                 System.out.print(k + ".");
                 k++;
                 String FIO = console.nextLine();
-                sklad.AddingBuyerToTheList(FIO);
+
+                sklad.AddingBuyerToTheList(FIO, BuyerID);
+                BuyerID++;
                 System.out.print("Дальше? 1.Да \n" +
                                  "        2.Нет  ");
                 num = console.nextInt();
@@ -96,15 +97,16 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        sklad.AddToProduct(String.valueOf(productType.BuildingMaterials),"Строй", "Доски", 0, 3,120);
-        sklad.AddToProduct(String.valueOf(productType.BuildingMaterials),"Build", "Кирпичи", 1, 10, 300);
-        sklad.AddToProduct(String.valueOf(productType.Technic),"Avo", "компьютер", 0, 1, 30000);
-        sklad.AddToProduct(String.valueOf(productType.Technic),"Techno", "Джостик", 1, 2, 1200);
-        sklad.AddToProduct(String.valueOf(productType.Technic),"NanoTECH", "Микрочипы", 2, 100, 7000);
-        sklad.AddingBuyerToTheList("Кирилл");
-        sklad.AddingBuyerToTheList("Б.О. Валин");
+        sklad.AddToProduct(String.valueOf(productType.BuildingMaterials),"Строй", "Доски", 0,120);
+        sklad.AddToProduct(String.valueOf(productType.BuildingMaterials),"Build", "Кирпичи",  1, 300);
+        sklad.AddToProduct(String.valueOf(productType.Technic),"Avo", "компьютер", 2, 30000);
+        sklad.AddToProduct(String.valueOf(productType.Technic),"Techno", "Джостик", 3, 1200);
+        sklad.AddToProduct(String.valueOf(productType.Technic),"NanoTECH", "Микрочипы", 4,  7000);
+        sklad.AddingBuyerToTheList("Кирилл", 0);
+        sklad.AddingBuyerToTheList("Б.О. Валин", 1);
 
-        sklad.GiveBuyerProduct(2, 0, 80);
+        sklad.GiveBuyerProduct(1, 0, 1, sklad.getProductByID(1));
+
         Menu();
 
     }
@@ -123,9 +125,9 @@ public class Main {
         int price = console.nextInt();
 
         if (number == 1) {
-            sklad.AddToProduct(String.valueOf(productType.Technic), Name,productName,productArticle, count, price);
+            sklad.AddToProduct(String.valueOf(productType.Technic), Name,productName,productArticle, price);
         } else if (number == 2) {
-            sklad.AddToProduct(String.valueOf(productType.BuildingMaterials), Name,productName,productArticle, count, price);
+            sklad.AddToProduct(String.valueOf(productType.BuildingMaterials), Name,productName,productArticle, price);
         }
         productArticle++;
     }

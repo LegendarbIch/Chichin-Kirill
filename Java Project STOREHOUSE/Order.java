@@ -4,14 +4,17 @@ public class Order {
 
     private int OrderID;
     private int BuyerID;
-    private int ProductID;
-    private ArrayList<Product> ProductOnBuyer;
 
-    public Order(int OrderID, int BuyerID, int ProductID, ArrayList<Product> ProductOnBuyer) {
+    private int ProductID;
+    private ArrayList<Product> ProductOnBuyer = new ArrayList<>();
+    private ArrayList<Product> Products;
+
+    public Order(int OrderID, int BuyerID, int ProductID, ArrayList<Product> Products) {
         this.OrderID = OrderID;
         this.BuyerID = BuyerID;
         this.ProductID = ProductID;
-        this.ProductOnBuyer = ProductOnBuyer;
+        this.Products = Products;
+        this.ProductOnBuyer.add(Products.get(ProductID));
     }
 
     public int getOrderID() {
@@ -45,4 +48,14 @@ public class Order {
     public void setProductID(int productID) {
         ProductID = productID;
     }
+    @Override
+    public String toString() {
+        return "Order{" +
+                "OrderID=" + OrderID +
+                ", BuyerID=" + BuyerID +
+                ", ProductID=" + ProductID +
+                ", ProductOnBuyer=" + ProductOnBuyer +
+                '}';
+    }
+
 }

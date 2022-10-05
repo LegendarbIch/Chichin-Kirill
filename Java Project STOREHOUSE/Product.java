@@ -4,14 +4,13 @@ public class Product extends Provider {
     private int ProductArticle;
     private int Price;
     private String ProductType;
-    private int Count;
 
-    public Product(String ProductType, String ProviderName, String ProductName, int ProductArticle, int Count ,int Price) {
+
+    public Product(String ProductType, String ProviderName, String ProductName, int ProductArticle, int Price) {
         super(ProviderName);
         this.ProductName = ProductName;
         this.ProductArticle = ProductArticle;
         this.Price = Price;
-        this.Count = Count;
         this.ProductType = ProductType;
     }
 
@@ -43,13 +42,6 @@ public class Product extends Provider {
         ProductType = type1;
     }
 
-    public int getCount() {
-        return Count;
-    }
-
-    public void setCount(int count) {
-        Count = count;
-    }
 
     @Override
     public String toString() {
@@ -58,7 +50,6 @@ public class Product extends Provider {
                 ", ProductArticle=" + ProductArticle +
                 ", Price=" + Price +
                 ", ProductType='" + ProductType + '\'' +
-                ", Count=" + Count +
                 '}';
     }
 }

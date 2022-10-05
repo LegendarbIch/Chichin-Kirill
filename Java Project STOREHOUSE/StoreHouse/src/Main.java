@@ -11,10 +11,10 @@ public class Main {
 
     public static void Repeat() {
         System.out.print("Какому покупателю вы хотите отправить товар?\n");
-        sklad.toStringBuyers();
+        sklad.getBuyers();
         int bu_id = console.nextInt();
         System.out.print("Какой товар отправить покупателю? \n" + "Выбор происходит по артиклю \n");
-        sklad.toStringProducts();
+        sklad.getProducts();
         int prod_id = console.nextInt();
         System.out.print("Какое количество товара отправить покупателю? \n");
         int product_count = console.nextInt();
@@ -85,7 +85,7 @@ public class Main {
         } else if (number == 2) {
             MenuAddBuyer();
         } else if (number==3) {
-            sklad.toStringProducts();
+            sklad.getProducts();
 
             Menu();
         } else if (number == 7) {
@@ -97,16 +97,19 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        sklad.AddToProduct(String.valueOf(productType.BuildingMaterials),"Строй", "Доски", 0,120);
-        sklad.AddToProduct(String.valueOf(productType.BuildingMaterials),"Build", "Кирпичи",  1, 300);
-        sklad.AddToProduct(String.valueOf(productType.Technic),"Avo", "компьютер", 2, 30000);
-        sklad.AddToProduct(String.valueOf(productType.Technic),"Techno", "Джостик", 3, 1200);
-        sklad.AddToProduct(String.valueOf(productType.Technic),"NanoTECH", "Микрочипы", 4,  7000);
+        sklad.AddToProduct(productType.BuildingMaterials,"Строй", "Доски", 0,120);
+        sklad.AddToProduct(productType.BuildingMaterials,"Build", "Кирпичи",  1, 300);
+        sklad.AddToProduct(productType.Technic,"Avo", "компьютер", 2, 30000);
+        sklad.AddToProduct(productType.Technic,"Techno", "Джостик", 3, 1200);
+        sklad.AddToProduct(productType.Technic,"NanoTECH", "Микрочипы", 4,  7000);
         sklad.AddingBuyerToTheList("Кирилл", 0);
         sklad.AddingBuyerToTheList("Б.О. Валин", 1);
 
-        sklad.GiveBuyerProduct(1, 0, 1, sklad.getProductByID(1));
-
+        sklad.GiveBuyerProduct(1, 0, 0);
+//        sklad.GiveBuyerProduct(2, 0, 0);
+        sklad.getOrders();
+        sklad.getProviders();
+        sklad.getProducts();
         Menu();
 
     }
@@ -115,19 +118,16 @@ public class Main {
         int number = console.nextInt();
         console.nextLine();
         System.out.print("Введите поставщика: ");
-        String Name = console.nextLine();
-        Provider.setProviderName(Name);
+        String ProviderName = console.nextLine();
         System.out.print("Введите товар: ");
         String productName = console.nextLine();
-        System.out.print("Введите количество товара: ");
-        int count = console.nextInt();
         System.out.print("Введите цену товара: ");
         int price = console.nextInt();
 
         if (number == 1) {
-            sklad.AddToProduct(String.valueOf(productType.Technic), Name,productName,productArticle, price);
+            sklad.AddToProduct(productType.Technic, ProviderName,productName,productArticle, price);
         } else if (number == 2) {
-            sklad.AddToProduct(String.valueOf(productType.BuildingMaterials), Name,productName,productArticle, price);
+            sklad.AddToProduct(productType.BuildingMaterials, ProviderName,productName,productArticle, price);
         }
         productArticle++;
     }

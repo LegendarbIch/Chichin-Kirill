@@ -3,18 +3,17 @@ import java.util.ArrayList;
 public class Order {
 
     private int OrderID;
+
     private int BuyerID;
 
     private int ProductID;
     private ArrayList<Product> ProductOnBuyer = new ArrayList<>();
-    private ArrayList<Product> Products;
-
-    public Order(int OrderID, int BuyerID, int ProductID, ArrayList<Product> Products) {
+    private Sklad sklad = new Sklad();
+    public Order(int OrderID, int BuyerID, int ProductID) {
         this.OrderID = OrderID;
         this.BuyerID = BuyerID;
         this.ProductID = ProductID;
-        this.Products = Products;
-        this.ProductOnBuyer.add(Products.get(ProductID));
+        this.ProductOnBuyer.add(sklad.getProductByID(ProductID));
     }
 
     public int getOrderID() {
@@ -48,6 +47,7 @@ public class Order {
     public void setProductID(int productID) {
         ProductID = productID;
     }
+
     @Override
     public String toString() {
         return "Order{" +
@@ -55,7 +55,7 @@ public class Order {
                 ", BuyerID=" + BuyerID +
                 ", ProductID=" + ProductID +
                 ", ProductOnBuyer=" + ProductOnBuyer +
-                '}';
+                '}' + "\n";
     }
 
 }

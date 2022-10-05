@@ -3,10 +3,9 @@ public class Product extends Provider {
     private String ProductName;
     private int ProductArticle;
     private int Price;
-    private String ProductType;
+    private ProductType ProductType;
 
-
-    public Product(String ProductType, String ProviderName, String ProductName, int ProductArticle, int Price) {
+    public Product(ProductType ProductType, String ProviderName, String ProductName, int ProductArticle, int Price) {
         super(ProviderName);
         this.ProductName = ProductName;
         this.ProductArticle = ProductArticle;
@@ -34,12 +33,12 @@ public class Product extends Provider {
 
     public void setPrice(int price) {Price = price;}
 
-    public String getProductType() {
+    public ProductType getProductType() {
         return ProductType;
     }
 
-    public void setProductType(String type1) {
-        ProductType = type1;
+    public void setProductType(ProductType productType) {
+        ProductType = productType;
     }
 
 
@@ -50,6 +49,6 @@ public class Product extends Provider {
                 ", ProductArticle=" + ProductArticle +
                 ", Price=" + Price +
                 ", ProductType='" + ProductType + '\'' +
-                '}';
+                '}' + "\n";
     }
 }

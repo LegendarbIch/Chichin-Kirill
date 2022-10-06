@@ -1,3 +1,5 @@
+package StoreHouse.src;
+
 import javax.lang.model.element.Name;
 import java.util.Scanner;
 

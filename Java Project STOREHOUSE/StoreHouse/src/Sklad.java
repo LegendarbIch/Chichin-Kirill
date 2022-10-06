@@ -1,3 +1,5 @@
+package StoreHouse.src;
+
 import java.util.ArrayList;
 
 public class Sklad {

@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a7be1ca0-85ff-4e8e-b817-d8a9e6742078" name="Changes" comment="" />
+    <list default="true" id="a7be1ca0-85ff-4e8e-b817-d8a9e6742078" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/JavaPractic3/TestPharmacy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java Project STOREHOUSE/StoreHouse/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Java Project STOREHOUSE/StoreHouse/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java Project STOREHOUSE/StoreHouse/src/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/Java Project STOREHOUSE/StoreHouse/src/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java Project STOREHOUSE/StoreHouse/src/Sklad.java" beforeDir="false" afterPath="$PROJECT_DIR$/Java Project STOREHOUSE/StoreHouse/src/Sklad.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaPractic3/Pharmacy.java" beforeDir="false" afterPath="$PROJECT_DIR$/JavaPractic3/Pharmacy.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -24,6 +38,26 @@
     "RunOnceActivity.ShowReadmeOnStart": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="StoreHouse.src.Main" />
+      <module name="Chichin-Kirill" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="StoreHouse.src.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

@@ -1,11 +1,16 @@
 package StoreHouse.src;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 public class Sklad {
     public ArrayList<Product> products = new ArrayList<>();;
     private ArrayList<Buyer> buyers = new ArrayList<>();
     private ArrayList<Order> orders = new ArrayList<>();
+
+    private HashMap<Integer, H ArrayList<ArrayList<Product>>> ProductOnBuyer = new HashMap<>();
 
     private ArrayList<Provider> providers = new ArrayList<>();
 
@@ -33,9 +38,13 @@ public class Sklad {
         providers.forEach(System.out::println);
     }
 
-    public void GiveBuyerProduct(int OrderID, int BuyerID, int ProductID) {
-        orders.add(new Order(OrderID, BuyerID, ProductID));
-        products.remove(ProductID);
+    public void GiveBuyerProduct(int OrderID, int BuyerID, int[] ProductsID) {
+        orders.add(new Order(OrderID, BuyerID, ProductsID));
+
+        ProductOnBuyer.put(getBuyersByID(BuyerID), getProductByID(ProductsID));
+        for (int i : ProductsID) {
+            products.remove(i);
+        }
     }
     public void getBuyersProduct() {
         int i = 1;
@@ -49,16 +58,27 @@ public class Sklad {
     public void getOrders() {
         orders.forEach(System.out::println);
     }
-    public Product getProductByID(int id) {
-        Product current = null;
-        for (Product product : products) {
-            if (id == product.getProductArticle()) {
-                current = product;
-                break;
+
+    public Buyer getBuyersByID(int id) {
+        for (Buyer buyer : buyers) {
+            if (id == buyer.getBuyerId()) {
+                System.out.println(buyers);
+                return buyer;
             }
         }
-        System.out.println(current);
-        return current;
+        throw new NoSuchElementException();
+    }
+
+    public Product getProductByID(int id) {
+        for (Product product : products) {
+            if (id == product.getProductArticle()) {
+                System.out.println(product);
+                return product;
+            }
+        }
+         throw new NoSuchElementException();
+//        Product current =  products.stream().filter(product -> product.getPrice()==id).collect(Collectors.toList()).get(0);
+//        return current;
     }
 
 }

@@ -1,6 +1,7 @@
 package StoreHouse.src;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Order {
 
@@ -8,14 +9,12 @@ public class Order {
 
     private int BuyerID;
 
-    private int ProductID;
-    private ArrayList<Product> ProductOnBuyer = new ArrayList<>();
-    private Sklad sklad = new Sklad();
-    public Order(int OrderID, int BuyerID, int ProductID) {
+    private int[] ProductsID;
+
+    public Order(int OrderID, int BuyerID, int[] ProductsID) {
         this.OrderID = OrderID;
         this.BuyerID = BuyerID;
-        this.ProductID = ProductID;
-        this.ProductOnBuyer.add(sklad.getProductByID(ProductID));
+        this.ProductsID = ProductsID;
     }
 
     public int getOrderID() {
@@ -34,20 +33,12 @@ public class Order {
         BuyerID = buyerID;
     }
 
-    public ArrayList<Product> getProductOnBuyer() {
-        return ProductOnBuyer;
+    public int[] getProductsID() {
+        return ProductsID;
     }
 
-    public void setProductOnBuyer(ArrayList<Product> productOnBuyer) {
-        ProductOnBuyer = productOnBuyer;
-    }
-
-    public int getProductID() {
-        return ProductID;
-    }
-
-    public void setProductID(int productID) {
-        ProductID = productID;
+    public void setProductsID(int[] productID) {
+        ProductsID = productID;
     }
 
     @Override
@@ -55,9 +46,8 @@ public class Order {
         return "Order{" +
                 "OrderID=" + OrderID +
                 ", BuyerID=" + BuyerID +
-                ", ProductID=" + ProductID +
-                ", ProductOnBuyer=" + ProductOnBuyer +
-                '}' + "\n";
+                ", ProductsID=" + Arrays.toString(ProductsID) +
+                '}';
     }
 
 }

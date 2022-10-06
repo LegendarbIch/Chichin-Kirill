@@ -9,7 +9,7 @@ public class Main {
 
     static ProductType productType;
     static int productArticle = 1;
-    static int BuyerID = 1;
+    static int buyerid = 1;
 
     public static void Repeat() {
         System.out.print("Какому покупателю вы хотите отправить товар?\n");
@@ -43,8 +43,8 @@ public class Main {
                 k++;
                 String FIO = console.nextLine();
 
-                sklad.AddingBuyerToTheList(FIO, BuyerID);
-                BuyerID++;
+                sklad.AddingBuyerToTheList(FIO, buyerid);
+                buyerid++;
                 System.out.print("Дальше? 1.Да \n" +
                                  "        2.Нет  ");
                 num = console.nextInt();
@@ -107,8 +107,9 @@ public class Main {
         sklad.AddingBuyerToTheList("Кирилл", 0);
         sklad.AddingBuyerToTheList("Б.О. Валин", 1);
 
-        sklad.GiveBuyerProduct(1, 0, 0);
+        sklad.GiveBuyerProduct(1, 0, new int[] {0, 1});
 //        sklad.GiveBuyerProduct(2, 0, 0);
+        sklad.getProductByID(1);
         sklad.getOrders();
         sklad.getProviders();
         sklad.getProducts();

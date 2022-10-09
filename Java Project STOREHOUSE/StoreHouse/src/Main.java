@@ -87,8 +87,10 @@ public class Main {
         } else if (number == 2) {
             MenuAddBuyer();
         } else if (number==3) {
+            sklad.getAvailableProductPositions();
+            Menu();
+        } else if (number==4) {
             sklad.getProducts();
-
             Menu();
         } else if (number == 7) {
             sklad.getBuyersProduct();
@@ -107,9 +109,8 @@ public class Main {
         sklad.AddingBuyerToTheList("Кирилл", 0);
         sklad.AddingBuyerToTheList("Б.О. Валин", 1);
 
-        sklad.GiveBuyerProduct(1, 0, new int[] {0, 1});
+        sklad.GiveBuyerProduct(1, 0, new int[] {0, 1, 2});
 //        sklad.GiveBuyerProduct(2, 0, 0);
-        sklad.getProductByID(1);
         sklad.getOrders();
         sklad.getProviders();
         sklad.getProducts();

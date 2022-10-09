@@ -1,6 +1,5 @@
 package StoreHouse.src;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Order {
@@ -15,6 +14,10 @@ public class Order {
         this.OrderID = OrderID;
         this.BuyerID = BuyerID;
         this.ProductsID = ProductsID;
+    }
+
+    public Order() {
+
     }
 
     public int getOrderID() {
@@ -34,7 +37,7 @@ public class Order {
     }
 
     public int[] getProductsID() {
-        return ProductsID;
+            return ProductsID;
     }
 
     public void setProductsID(int[] productID) {

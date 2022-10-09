@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7be1ca0-85ff-4e8e-b817-d8a9e6742078" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/JavaPractic3/TestPharmacy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Java Project STOREHOUSE/StoreHouse/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Java Project STOREHOUSE/StoreHouse/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Java Project STOREHOUSE/StoreHouse/src/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/Java Project STOREHOUSE/StoreHouse/src/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Java Project STOREHOUSE/StoreHouse/src/Sklad.java" beforeDir="false" afterPath="$PROJECT_DIR$/Java Project STOREHOUSE/StoreHouse/src/Sklad.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JavaPractic3/Pharmacy.java" beforeDir="false" afterPath="$PROJECT_DIR$/JavaPractic3/Pharmacy.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,12 +30,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="StoreHouse.src.Main" />

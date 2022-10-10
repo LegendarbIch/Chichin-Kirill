@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96d66329-e0fd-441a-a285-4c5bd8638586" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java Project STOREHOUSE/StoreHouse/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Java Project STOREHOUSE/StoreHouse/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java Project STOREHOUSE/StoreHouse/src/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/Java Project STOREHOUSE/StoreHouse/src/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java Project STOREHOUSE/StoreHouse/src/Sklad.java" beforeDir="false" afterPath="$PROJECT_DIR$/Java Project STOREHOUSE/StoreHouse/src/Sklad.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Chichin-Kirill/StoreHouse/src/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chichin-Kirill/StoreHouse/src/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Chichin-Kirill/StoreHouse/src/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chichin-Kirill/StoreHouse/src/Product.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Chichin-Kirill/StoreHouse/src/Sklad.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Chichin-Kirill/StoreHouse/src/Sklad.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Java Project STOREHOUSE/Java Project STOREHOUSE.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chichin-Kirill.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Chichin-Kirill.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,5 +70,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Java Project STOREHOUSE/StoreHouse/src/Main.java</url>
+          <line>124</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

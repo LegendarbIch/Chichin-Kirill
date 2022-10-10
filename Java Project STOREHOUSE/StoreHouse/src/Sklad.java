@@ -1,26 +1,48 @@
+package StoreHouse.src;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 public class Sklad {
-    public ArrayList<Product> products = new ArrayList<>();;
+
+    private ArrayList<Product> products = new ArrayList<>();
+    //Список наличия товара на складе ^
+    public ArrayList<Product> AvailableProductPositions = new ArrayList<>();
+    //Список позиций товаров ^
     private ArrayList<Buyer> buyers = new ArrayList<>();
+    //Список покупателей ^
     private ArrayList<Order> orders = new ArrayList<>();
-
+    //Список заказов ^
     private ArrayList<Provider> providers = new ArrayList<>();
+    //Список поставщиков ^
 
+
+    // Метод добавления товаров в список
     public void AddToProduct(ProductType ProductType, String ProviderName, String productName, int productArticle, int price) {
         this.products.add(new Product(ProductType, ProviderName, productName, productArticle, price));
+        this.AvailableProductPositions.add(new Product(ProductType, ProviderName, productName, productArticle, price));
         providers.add(new Provider(ProviderName));
     }
+
+    // Метод добавления поставщиков по отдельности в список
     public void AddToProviders(String ProviderName) {
         this.providers.add(new Provider(ProviderName));
     }
-    public ArrayList<Buyer> AddingBuyerToTheList(String fio, int buyerid) {
+
+    // Метод добавления покупателя в список
+    public void AddingBuyerToTheList(String fio, int buyerid) {
         buyers.add(new Buyer(fio, buyerid));
-        return buyers;
     }
 
     public void getProducts() {
        products.forEach(System.out::println);
+    }
+
+    public void getAvailableProductPositions() {
+        AvailableProductPositions.forEach(System.out::println);
     }
 
     public void getBuyers() {
@@ -31,32 +53,49 @@ public class Sklad {
         providers.forEach(System.out::println);
     }
 
-    public void GiveBuyerProduct(int OrderID, int BuyerID, int ProductID) {
-        orders.add(new Order(OrderID, BuyerID, ProductID));
-        products.remove(ProductID);
-    }
-    public void getBuyersProduct() {
-        int i = 1;
-        for (Buyer buyer : buyers) {
-            System.out.println( (i++) + ". " + buyer.getFIO() + "\n");
-            for (Product product : buyer.products) {
-                System.out.println("Отправленный товар:\n" + product.toString() + "\n");
-            }
+
+    // Оформить заказ с айди покупателя с выданными ему айди товаров,
+    // которые после удаляются из списка достпуных товаров
+    public void GiveBuyerProduct(int OrderID, int BuyerID, int[] ProductsID) {
+        orders.add(new Order(OrderID, BuyerID, ProductsID));
+        for (int j: ProductsID) {
+            products.removeIf(product -> product.getProductArticle() == ProductsID[j]);
         }
     }
+
     public void getOrders() {
         orders.forEach(System.out::println);
     }
+
     public Product getProductByID(int id) {
-        Product current = null;
-        for (Product product : products) {
+        for (Product product : AvailableProductPositions) {
             if (id == product.getProductArticle()) {
-                current = product;
-                break;
+                System.out.println(product);
+                return product;
             }
         }
-        System.out.println(current);
-        return current;
+         return null;
     }
+    public Buyer getBuyerByID(int id) {
+        for (Buyer buyer : buyers) {
+            if (id == buyer.getBuyerId()) {
+                System.out.println(buyer);
+                return buyer;
+            }
+        }
+        return null;
+    }
+    public void getBuyersProduct() {
 
+        for (Order order: orders) {
+            System.out.print("Номер заказа: " + order.getOrderID() + "\n" +
+                             "Покупатель: " + getBuyerByID(order.getBuyerID()) + "\n" +
+                             "Товары: \n");
+                            int[] arr = order.getProductsID();
+                            for (int i: arr) {
+                                getProductByID(i);
+            }
+        }
+
+    }
 }

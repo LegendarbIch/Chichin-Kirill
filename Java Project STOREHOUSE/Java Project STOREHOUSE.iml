@@ -3,11 +3,7 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
-<<<<<<< Updated upstream
-      <sourceFolder url="file://$MODULE_DIR$/Java Project STOREHOUSE" isTestSource="false" />
-=======
->>>>>>> Stashed changes
-      <sourceFolder url="file://$MODULE_DIR$/JavaPractic3" isTestSource="false" packagePrefix="com.makotogroup.intro" />
+      <sourceFolder url="file://$MODULE_DIR$/StoreHouse/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -46,10 +46,10 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" +
-                "OrderID=" + OrderID +
-                ", BuyerID=" + BuyerID +
-                ", ProductsID=" + Arrays.toString(ProductsID) +
+        return "Заказ{" +
+                " Номер заказа=" + OrderID +
+                ", Номер покупателя=" + BuyerID +
+                ", Номера отпущеных товаров=" + Arrays.toString(ProductsID) +
                 '}';
     }
 

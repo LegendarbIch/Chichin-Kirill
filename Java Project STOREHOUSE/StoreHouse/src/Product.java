@@ -46,12 +46,12 @@ public class Product extends Provider {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "ProductName= '" + ProductName + '\'' +
-                ", ProviderName= '" + super.getProviderName() + "\'" +
-                ", ProductArticle= " + ProductArticle +
-                ", Price= " + Price +
-                ", ProductType= '" + ProductType + '\'' +
+        return "Товар{" +
+                "Название= '" + ProductName + '\'' +
+                ", Поставщик= '" + super.getProviderName() + "\'" +
+                ", Номер товара= " + ProductArticle +
+                ", Цена= " + Price +
+                ", Тип товара= '" + ProductType + '\'' +
                 '}' + "\n";
     }
 }

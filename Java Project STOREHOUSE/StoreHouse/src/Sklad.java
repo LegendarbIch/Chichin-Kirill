@@ -66,8 +66,9 @@ public class Sklad {
     // которые после удаляются из списка достпуных товаров
     public void GiveBuyerProduct(int OrderID, int BuyerID, int[] ProductsID) {
         orders.add(new Order(OrderID, BuyerID, ProductsID));
-        for (int j: ProductsID) {
-            products.removeIf(product -> product.getProductArticle() == ProductsID[j]);
+        for (int j = 0; j < ProductsID.length-1 ; j++) {
+            int finalJ = j;
+            products.removeIf(product -> product.getProductArticle() == ProductsID[finalJ]);
         }
     }
 
@@ -119,4 +120,16 @@ public class Sklad {
             ProviderGoods.clear();
         }
     }
+//    public int AutoID() {
+//        ArrayList<Integer> AllID = new ArrayList<>();
+//        int maxID = 1;
+//        if (products == null) {
+//            return maxID;
+//        }
+//        for (Product product: products) {
+//            AllID.add(product.getProductArticle());
+//        }
+//        maxID = Collections.max(AllID);
+//        return maxID;
+//    }
 }

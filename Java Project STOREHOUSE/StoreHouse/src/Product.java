@@ -47,10 +47,11 @@ public class Product extends Provider {
     @Override
     public String toString() {
         return "Product{" +
-                "ProductName='" + ProductName + '\'' +
-                ", ProductArticle=" + ProductArticle +
-                ", Price=" + Price +
-                ", ProductType='" + ProductType + '\'' +
+                "ProductName= '" + ProductName + '\'' +
+                ", ProviderName= '" + super.getProviderName() + "\'" +
+                ", ProductArticle= " + ProductArticle +
+                ", Price= " + Price +
+                ", ProductType= '" + ProductType + '\'' +
                 '}' + "\n";
     }
 }

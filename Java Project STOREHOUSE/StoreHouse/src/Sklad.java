@@ -1,9 +1,6 @@
 package StoreHouse.src;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.NoSuchElementException;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Sklad {
@@ -24,7 +21,18 @@ public class Sklad {
     public void AddToProduct(ProductType ProductType, String ProviderName, String productName, int productArticle, int price) {
         this.products.add(new Product(ProductType, ProviderName, productName, productArticle, price));
         this.AvailableProductPositions.add(new Product(ProductType, ProviderName, productName, productArticle, price));
-        providers.add(new Provider(ProviderName));
+        boolean bool = true;
+        for (Provider provider: providers) {
+            if (provider.getProviderName() == ProviderName) {
+                bool = false;
+                break;
+            } else {
+                bool = true;
+            }
+        }
+        if (bool == true) {
+            providers.add(new Provider(ProviderName));
+        }
     }
 
     // Метод добавления поставщиков по отдельности в список
@@ -79,14 +87,12 @@ public class Sklad {
     public Buyer getBuyerByID(int id) {
         for (Buyer buyer : buyers) {
             if (id == buyer.getBuyerId()) {
-                System.out.println(buyer);
                 return buyer;
             }
         }
         return null;
     }
     public void getBuyersProduct() {
-
         for (Order order: orders) {
             System.out.print("Номер заказа: " + order.getOrderID() + "\n" +
                              "Покупатель: " + getBuyerByID(order.getBuyerID()) + "\n" +
@@ -97,5 +103,20 @@ public class Sklad {
             }
         }
 
+    }
+    public void GroupingOfProductsByType() {
+        List<Product> Type = AvailableProductPositions.stream().filter(product -> product.getProductType().equals(ProductType.Technic)).collect(Collectors.toList());
+        List<Product> Type1 = AvailableProductPositions.stream().filter(product -> product.getProductType().equals(ProductType.BuildingMaterials)).collect(Collectors.toList());
+        System.out.println(ProductType.Technic + ":\n" + Type + "\n" + ProductType.BuildingMaterials + ":\n" + Type1);
+    }
+
+    public void getInfoOnProviders() {
+        for (Provider provider: providers) {
+            System.out.println("Поставщик: " + provider.getProviderName());
+            List<Product> ProviderGoods = AvailableProductPositions.stream().filter(product -> product.getProviderName()
+                    .equals(provider.getProviderName())).collect(Collectors.toList());
+            System.out.println("Поставляемый товар:\n " + ProviderGoods);
+            ProviderGoods.clear();
+        }
     }
 }

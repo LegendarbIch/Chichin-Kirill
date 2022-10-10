@@ -92,6 +92,12 @@ public class Main {
         } else if (number==4) {
             sklad.getProducts();
             Menu();
+        } else if (number==5) {
+            sklad.GroupingOfProductsByType();
+            Menu();
+        } else if (number == 6) {
+            sklad.getInfoOnProviders();
+            Menu();
         } else if (number == 7) {
             sklad.getBuyersProduct();
             Menu();
@@ -101,19 +107,21 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        sklad.AddToProduct(productType.BuildingMaterials,"Строй", "Доски", 0,120);
+        sklad.AddToProduct(productType.Technic,"Avo", "Компьютер", 2, 30000);
+        sklad.AddToProduct(productType.BuildingMaterials,"INC", "Доски", 0,120);
         sklad.AddToProduct(productType.BuildingMaterials,"Build", "Кирпичи",  1, 300);
-        sklad.AddToProduct(productType.Technic,"Avo", "компьютер", 2, 30000);
-        sklad.AddToProduct(productType.Technic,"Techno", "Джостик", 3, 1200);
+        sklad.AddToProduct(productType.Technic,"Avo", "Джостик", 3, 1200);
         sklad.AddToProduct(productType.Technic,"NanoTECH", "Микрочипы", 4,  7000);
+        sklad.AddToProduct(productType.BuildingMaterials,"INC", "Изменрители",  5, 6700);
+        sklad.AddToProduct(productType.Technic,"NanoTECH", "Дисплей", 6,  50000);
         sklad.AddingBuyerToTheList("Кирилл", 0);
         sklad.AddingBuyerToTheList("Б.О. Валин", 1);
 
         sklad.GiveBuyerProduct(1, 0, new int[] {0, 1, 2});
 //        sklad.GiveBuyerProduct(2, 0, 0);
-        sklad.getOrders();
-        sklad.getProviders();
-        sklad.getProducts();
+//        sklad.getOrders();
+         sklad.getProviders();
+//        sklad.getProducts();
         Menu();
 
     }

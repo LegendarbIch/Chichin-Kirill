@@ -1,15 +1,11 @@
-package StoreHouse.src;
 
 import java.util.ArrayList;
 
 // класс Покупатель
 public class Buyer {
 
-
-
     private String FIO;
     private int BuyerId;
-    public ArrayList<Product> products = new ArrayList<>();
     public Buyer (String FIO, int BuyerId) {
         this.FIO = FIO;
         this.BuyerId = BuyerId;

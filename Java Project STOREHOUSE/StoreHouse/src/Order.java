@@ -1,4 +1,3 @@
-package StoreHouse.src;
 
 import java.util.Arrays;
 

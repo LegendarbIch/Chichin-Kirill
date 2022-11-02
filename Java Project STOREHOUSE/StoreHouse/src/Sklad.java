@@ -1,5 +1,7 @@
-package StoreHouse.src;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -16,8 +18,56 @@ public class Sklad {
     private ArrayList<Provider> providers = new ArrayList<>();
     //Список поставщиков ^
 
+    private DataBaseHandler dataBaseHandler = DataBaseHandler.getInstance();
 
-    // Метод добавления товаров в список
+
+
+    public void addBuyerToDB(int idBuyers, String FIO) throws SQLException, ClassNotFoundException {
+
+        String insert = "INSERT INTO " + Const.BUYERS_TABLE + "(" + Const.BUYERS_ID + "," + Const.BUYERS_FIO + ")" +
+                "VALUES(?,?)";
+        PreparedStatement prSt = dataBaseHandler.getDbConnection().prepareStatement(insert);
+        try {
+
+            prSt.setInt(1, idBuyers);
+            prSt.setString(2, FIO);
+
+            prSt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try { prSt.close(); System.out.println("PrepareStatement закрыт"); }
+            catch (SQLException e) { e.printStackTrace(); }
+        }
+    }
+    public void getBuyersFromDB() throws SQLException, ClassNotFoundException {
+        String query = "SELECT * " +
+         "FROM " + Const.BUYERS_TABLE;
+        ResultSet rs = dataBaseHandler.getDbConnection().createStatement().executeQuery(query);
+        try {
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                String FIO = rs.getString(2);
+                System.out.printf("id: %d, FIO: %s", id, FIO);
+                System.out.println("\n");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try { rs.close(); System.out.println("ResultSet закрыт");
+            } catch (SQLException e) { e.printStackTrace(); }
+        }
+    }
+
+    public void addProductToDB(int idProduct, String ProductName, int Price, String P) {
+
+    }
+    public void CloseConnection() throws SQLException, ClassNotFoundException {
+        dataBaseHandler.getDbConnection().close();
+        System.out.println("База данных закрыта.");
+    }
+
+        // Метод добавления товаров в список
     public void AddToProduct(ProductType ProductType, String ProviderName, String productName, int productArticle, int price) {
         this.products.add(new Product(ProductType, ProviderName, productName, productArticle, price));
         this.AvailableProductPositions.add(new Product(ProductType, ProviderName, productName, productArticle, price));

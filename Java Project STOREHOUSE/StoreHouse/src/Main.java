@@ -1,10 +1,14 @@
-package StoreHouse.src;
 
 import javax.lang.model.element.Name;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {
+
     static Sklad sklad = new Sklad();
+
     static Scanner console = new Scanner(System.in);
 
     static ProductType productType;
@@ -12,7 +16,7 @@ public class Main {
 //
 //    static int buyerid = 1;
 
-//    public static void Repeat() {
+    //    public static void Repeat() {
 //        System.out.print("Какому покупателю вы хотите отправить товар?\n");
 //        sklad.getBuyers();
 //        int bu_id = console.nextInt();
@@ -58,14 +62,14 @@ public class Main {
 //        }
 //    }
     public static void Menu() {
-        System.out.println("Выберите, что хотите сделать:  1. (вручную) Добавить товар на склад" + "\n" +
-                           "                               2. (вручную) Отпустить товар покупателю" + "\n" +
-                           "                               3. Получение информации о доступных позициях товара" + "\n" +
-                           "                               4. Получение информации о наличии товара на складе" +  "\n" +
-                           "                               5. Группировка товаров по видам" + "\n" +
-                           "                               6. Получение информации по поставщикам" + "\n" +
-                           "                               7. Получение информации по покупателям" + "\n" +
-                           "                               8. Выйти из программы" + "\n");
+        System.out.println("Выберите, что хотите сделать:  -. (вручную) Добавить товар на склад" + "\n" +
+                "                               -. (вручную) Отпустить товар покупателю" + "\n" +
+                "                               3. Получение информации о доступных позициях товара" + "\n" +
+                "                               4. Получение информации о наличии товара на складе" + "\n" +
+                "                               5. Группировка товаров по видам" + "\n" +
+                "                               6. Получение информации по поставщикам" + "\n" +
+                "                               7. Получение информации по покупателям из БД" + "\n" +
+                "                               8. Выйти из программы" + "\n");
         int number = console.nextInt();
         // если добавлять товар
 //        if (number == 1) {
@@ -85,20 +89,30 @@ public class Main {
 //            // если отпускать покупателю
 //        } else if (number == 2) {
 //            MenuAddBuyer();
-         if (number==3) {
+        if (number == 3) {
             sklad.getAvailableProductPositions();
             Menu();
-        } else if (number==4) {
+        } else if (number == 4) {
             sklad.getProducts();
             Menu();
-        } else if (number==5) {
+        } else if (number == 5) {
             sklad.GroupingOfProductsByType();
             Menu();
         } else if (number == 6) {
             sklad.getInfoOnProviders();
             Menu();
         } else if (number == 7) {
-            sklad.getBuyersProduct();
+            try {
+                sklad.getBuyersFromDB();
+            } catch (SQLException | ClassNotFoundException sqlEx) {
+                sqlEx.printStackTrace();
+            } finally {
+                try {
+                    sklad.CloseConnection();
+                } catch (SQLException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
             Menu();
         } else if (number == 8) {
             System.exit(0);
@@ -106,20 +120,22 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        sklad.AddToProduct(productType.Technic,"Avo", "Компьютер", 2, 30000);
-        sklad.AddToProduct(productType.BuildingMaterials,"INC", "Доски", 0,120);
-        sklad.AddToProduct(productType.BuildingMaterials,"Build", "Кирпичи",  1, 300);
-        sklad.AddToProduct(productType.Technic,"Avo", "Джостик", 3, 1200);
-        sklad.AddToProduct(productType.Technic,"NanoTECH", "Микрочипы", 4,  7000);
-        sklad.AddToProduct(productType.BuildingMaterials,"INC", "Изменрители",  5, 6700);
-        sklad.AddToProduct(productType.Technic,"NanoTECH", "Дисплей", 6,  50000);
+        sklad.AddToProduct(productType.Technic, "Avo", "Компьютер", 2, 30000);
+        sklad.AddToProduct(productType.BuildingMaterials, "INC", "Доски", 0, 120);
+        sklad.AddToProduct(productType.BuildingMaterials, "Build", "Кирпичи", 1, 300);
+        sklad.AddToProduct(productType.Technic, "Avo", "Джостик", 3, 1200);
+        sklad.AddToProduct(productType.Technic, "NanoTECH", "Микрочипы", 4, 7000);
+        sklad.AddToProduct(productType.BuildingMaterials, "INC", "Изменрители", 5, 6700);
+        sklad.AddToProduct(productType.Technic, "NanoTECH", "Дисплей", 6, 50000);
         sklad.AddingBuyerToTheList("Кирилл", 0);
         sklad.AddingBuyerToTheList("Б.О. Валин", 1);
 
-        sklad.GiveBuyerProduct(1, 0, new int[] {1, 2});
-        sklad.GiveBuyerProduct(2, 0, new int[] {4, 5, 6});
+        sklad.GiveBuyerProduct(1, 0, new int[]{1, 2});
+        sklad.GiveBuyerProduct(2, 1, new int[]{4, 5, 6});
+
         Menu();
 
+        }
     }
 //    public static void AddingProducts(){
 //        System.out.print("Какой тип товара вы хотите добавить?  1.Техника   2.Строительные материалы");
@@ -140,4 +156,3 @@ public class Main {
 //        productArticle++;
 //    }
 
-}

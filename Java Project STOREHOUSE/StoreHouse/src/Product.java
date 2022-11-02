@@ -1,4 +1,4 @@
-package StoreHouse.src;
+
 
 // класс Товар
 public class Product extends Provider {

@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class Sklad {
 
-    private ArrayList<Product> products = new ArrayList<>();
+    private final ArrayList<Product> products = new ArrayList<>();
     //Список наличия товара на складе ^
     public ArrayList<Product> AvailableProductPositions = new ArrayList<>();
     //Список позиций товаров ^
@@ -17,20 +17,33 @@ public class Sklad {
     //Список заказов ^
     private ArrayList<Provider> providers = new ArrayList<>();
     //Список поставщиков ^
-
+    private int AutoIncrease = 10;
     private DataBaseHandler dataBaseHandler = DataBaseHandler.getInstance();
 
+    public ArrayList<Product> getProducts() {
+        return products;
+    }
+    public ArrayList<Buyer> getBuyers() {
+        return buyers;
+    }
 
+    public PreparedStatement CreateStatement(String query) throws SQLException, ClassNotFoundException {
+        PreparedStatement prSt = dataBaseHandler.getDbConnection().prepareStatement(query);
+        return prSt;
+    }
+    public ResultSet CreateResultSet(String query) throws SQLException, ClassNotFoundException {
+        ResultSet rs = dataBaseHandler.getDbConnection().createStatement().executeQuery(query);
+        return rs;
+    }
 
-    public void addBuyerToDB(int idBuyers, String FIO) throws SQLException, ClassNotFoundException {
+    public void addBuyerToDB(String FIO) throws SQLException, ClassNotFoundException {
 
-        String insert = "INSERT INTO " + Const.BUYERS_TABLE + "(" + Const.BUYERS_ID + "," + Const.BUYERS_FIO + ")" +
-                "VALUES(?,?)";
-        PreparedStatement prSt = dataBaseHandler.getDbConnection().prepareStatement(insert);
+        String insert = "INSERT INTO " + Const.BUYERS_TABLE + "(" + Const.BUYERS_FIO + ")" +
+                "VALUES(?)";
+        PreparedStatement prSt = CreateStatement(insert);
         try {
 
-            prSt.setInt(1, idBuyers);
-            prSt.setString(2, FIO);
+            prSt.setString(1, FIO);
 
             prSt.executeUpdate();
         } catch (SQLException e) {
@@ -40,27 +53,93 @@ public class Sklad {
             catch (SQLException e) { e.printStackTrace(); }
         }
     }
-    public void getBuyersFromDB() throws SQLException, ClassNotFoundException {
+    public void FillBuyersFromDB() throws SQLException, ClassNotFoundException {
         String query = "SELECT * " +
          "FROM " + Const.BUYERS_TABLE;
-        ResultSet rs = dataBaseHandler.getDbConnection().createStatement().executeQuery(query);
+        ResultSet rs = CreateResultSet(query);
         try {
             while (rs.next()) {
                 int id = rs.getInt(1);
                 String FIO = rs.getString(2);
-                System.out.printf("id: %d, FIO: %s", id, FIO);
-                System.out.println("\n");
+                AddingBuyerToTheList(FIO, id);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try { rs.close(); System.out.println("ResultSet закрыт");
+            try { rs.close();
             } catch (SQLException e) { e.printStackTrace(); }
         }
     }
+    public void FillProductsFromDB() throws SQLException, ClassNotFoundException {
+        String query = "SELECT * " +
+                "FROM " + Const.PRODUCT_TABLE;
+        ResultSet rs = CreateResultSet(query);
+        try {
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                String prodName = rs.getString(2);
+                int price = rs.getInt(3);
+                String type = rs.getString(4);
+                String provider = rs.getString(5);
+                AddToProduct(type, provider, prodName, id, price);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try { rs.close();
+            } catch (SQLException e) { e.printStackTrace(); }
+        }
+    }
+    public void addProductToDB( String Provider, String ProductName, int Price, String Type) throws SQLException, ClassNotFoundException {
+        String query = "INSERT INTO " + Const.PRODUCT_TABLE + "(" + Const.PRODUCT_NAME + "," + Const.PRODUCT_PRICE + ","
+                + Const.PRODUCT_TYPE + "," + Const.PRODUCT_PROVIDER + ")" + "VALUES(?,?,?,?)";
+        PreparedStatement prSt = CreateStatement(query);
+        try {
+            prSt.setString(1, ProductName);
+            prSt.setInt(2, Price);
+            prSt.setString(3,Type);
+            prSt.setString(4, Provider);
+            prSt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            prSt.close();
+        }
 
-    public void addProductToDB(int idProduct, String ProductName, int Price, String P) {
-
+    }
+    public String getBuyersFromDBbyID(int ID) throws SQLException, ClassNotFoundException {
+        String query = "SELECT * FROM " + Const.BUYERS_TABLE + " LIMIT " + (ID-1) + "," + 1;
+        ResultSet rs = CreateResultSet(query);
+        try {
+            if (rs.next()) {
+                String FIO = rs.getString(2);
+                return FIO;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+            } catch (SQLException e) { e.printStackTrace(); }
+        }
+        return null;
+    }
+    public String getProductFromDBbyID(int ID) throws SQLException, ClassNotFoundException {
+        String query = "SELECT * FROM " + Const.PRODUCT_TABLE + " LIMIT " + (ID-1) + "," + 1;
+        ResultSet rs = CreateResultSet(query);
+        try {
+            if (rs.next()) {
+                String FIO = rs.getString(2);
+                return FIO;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+            } catch (SQLException e) { e.printStackTrace(); }
+        }
+        return null;
     }
     public void CloseConnection() throws SQLException, ClassNotFoundException {
         dataBaseHandler.getDbConnection().close();
@@ -68,7 +147,7 @@ public class Sklad {
     }
 
         // Метод добавления товаров в список
-    public void AddToProduct(ProductType ProductType, String ProviderName, String productName, int productArticle, int price) {
+    public void AddToProduct(String ProductType, String ProviderName, String productName, int productArticle, int price) {
         this.products.add(new Product(ProductType, ProviderName, productName, productArticle, price));
         this.AvailableProductPositions.add(new Product(ProductType, ProviderName, productName, productArticle, price));
         boolean bool = true;
@@ -95,19 +174,15 @@ public class Sklad {
         buyers.add(new Buyer(fio, buyerid));
     }
 
-    public void getProducts() {
-       products.forEach(System.out::println);
-    }
-
     public void getAvailableProductPositions() {
         AvailableProductPositions.forEach(System.out::println);
     }
 
-    public void getBuyers() {
+    public void getBuyers1() {
        buyers.forEach(System.out::println);
     }
 
-    public void  getProviders() {
+    public void  getProviders1() {
         providers.forEach(System.out::println);
     }
 
@@ -122,7 +197,7 @@ public class Sklad {
         }
     }
 
-    public void getOrders() {
+    public void getOrders1() {
         orders.forEach(System.out::println);
     }
 
@@ -183,3 +258,4 @@ public class Sklad {
 //        return maxID;
 //    }
 }
+

@@ -12,4 +12,6 @@ public class Const {
     public static final String PRODUCT_PRICE = "Price";
 
     public static final String PRODUCT_TYPE = "ProductType";
+
+    public static final String PRODUCT_PROVIDER = "Provider";
 }

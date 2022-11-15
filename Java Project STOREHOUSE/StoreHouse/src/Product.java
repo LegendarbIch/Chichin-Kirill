@@ -5,9 +5,9 @@ public class Product extends Provider {
     private String ProductName;
     private int ProductArticle;
     private int Price;
-    private ProductType ProductType;
+    private String ProductType;
 
-    public Product(ProductType ProductType, String ProviderName, String ProductName, int ProductArticle, int Price) {
+    public Product(String ProductType, String ProviderName, String ProductName, int ProductArticle, int Price) {
         super(ProviderName);
         this.ProductName = ProductName;
         this.ProductArticle = ProductArticle;
@@ -35,23 +35,19 @@ public class Product extends Provider {
 
     public void setPrice(int price) {Price = price;}
 
-    public ProductType getProductType() {
+    public String getProductType() {
         return ProductType;
     }
 
-    public void setProductType(ProductType productType) {
+    public void setProductType(String productType) {
         ProductType = productType;
     }
 
 
     @Override
     public String toString() {
-        return "Товар{" +
-                "Название= '" + ProductName + '\'' +
-                ", Поставщик= '" + super.getProviderName() + "\'" +
-                ", Номер товара= " + ProductArticle +
-                ", Цена= " + Price +
-                ", Тип товара= '" + ProductType + '\'' +
-                '}' + "\n";
+        return "|" + getProductArticle() + "| Название: |" + getProductName() + "| Поставщик: |" + getProviderName() + "| Тип: |" +
+                getProductType() + "| Цена: |" + getPrice() + "|";
+
     }
 }

@@ -16,10 +16,6 @@ public class Buyer {
 
     public String getFIO() { return FIO; }
 
-    public String toString(int k) {
-        return (k++) + ". " + FIO + "\n";
-    }
-
     public int getBuyerId() {
         return BuyerId;
     }
@@ -29,9 +25,6 @@ public class Buyer {
 
     @Override
     public String toString() {
-        return "Buyer{" +
-                "FIO='" + FIO + '\'' +
-                ", BuyerId=" + BuyerId +
-                '}';
+        return getBuyerId() + " " + getFIO();
     }
 }

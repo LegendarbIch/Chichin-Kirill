@@ -1,5 +1,6 @@
 
 import javax.lang.model.element.Name;
+import java.awt.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -61,79 +62,55 @@ public class Main {
 //            Menu();
 //        }
 //    }
-    public static void Menu() {
-        System.out.println("Выберите, что хотите сделать:  -. (вручную) Добавить товар на склад" + "\n" +
-                "                               -. (вручную) Отпустить товар покупателю" + "\n" +
-                "                               3. Получение информации о доступных позициях товара" + "\n" +
-                "                               4. Получение информации о наличии товара на складе" + "\n" +
-                "                               5. Группировка товаров по видам" + "\n" +
-                "                               6. Получение информации по поставщикам" + "\n" +
-                "                               7. Получение информации по покупателям из БД" + "\n" +
-                "                               8. Выйти из программы" + "\n");
-        int number = console.nextInt();
-        // если добавлять товар
-//        if (number == 1) {
-//            AddingProducts();
-//            int number2 = 0;
-//            while (number2 != 2) {
-//                System.out.println("Добавить еще товар?   1." + "\n" +
-//                                   "Выйти в главное меню? 2." + "\n");
-//                number2 = console.nextInt();
-//                if (number2 == 1) {
-//                    AddingProducts();
-//                } else if (number2 == 2) {
-//                    System.out.print("\n\n\n\n\n");
-//                    Menu();
+//    public static void Menu() {
+//        System.out.println("Выберите, что хотите сделать:  -. (вручную) Добавить товар на склад" + "\n" +
+//                "                               -. (вручную) Отпустить товар покупателю" + "\n" +
+//                "                               3. Получение информации о доступных позициях товара" + "\n" +
+//                "                               4. Получение информации о наличии товара на складе" + "\n" +
+//                "                               5. Группировка товаров по видам" + "\n" +
+//                "                               6. Получение информации по поставщикам" + "\n" +
+//                "                               7. Получение информации по покупателям из БД" + "\n" +
+//                "                               8. Выйти из программы" + "\n");
+//        int number = console.nextInt();
+//        if (number == 3) {
+//            sklad.getAvailableProductPositions();
+//            Menu();
+//        } else if (number == 4) {
+//            sklad.getProducts();
+//            Menu();
+//        } else if (number == 5) {
+//            sklad.GroupingOfProductsByType();
+//            Menu();
+//        } else if (number == 6) {
+//            sklad.getInfoOnProviders();
+//            Menu();
+//        } else if (number == 7) {
+//            try {
+//                sklad.getBuyersFromDB();
+//            } catch (SQLException | ClassNotFoundException sqlEx) {
+//                sqlEx.printStackTrace();
+//            } finally {
+//                try {
+//                    sklad.CloseConnection();
+//                } catch (SQLException | ClassNotFoundException e) {
+//                    e.printStackTrace();
 //                }
 //            }
-//            // если отпускать покупателю
-//        } else if (number == 2) {
-//            MenuAddBuyer();
-        if (number == 3) {
-            sklad.getAvailableProductPositions();
-            Menu();
-        } else if (number == 4) {
-            sklad.getProducts();
-            Menu();
-        } else if (number == 5) {
-            sklad.GroupingOfProductsByType();
-            Menu();
-        } else if (number == 6) {
-            sklad.getInfoOnProviders();
-            Menu();
-        } else if (number == 7) {
-            try {
-                sklad.getBuyersFromDB();
-            } catch (SQLException | ClassNotFoundException sqlEx) {
-                sqlEx.printStackTrace();
-            } finally {
-                try {
-                    sklad.CloseConnection();
-                } catch (SQLException | ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
-            }
-            Menu();
-        } else if (number == 8) {
-            System.exit(0);
-        }
-    }
+//            Menu();
+//        } else if (number == 8) {
+//            System.exit(0);
+//        }
+//    }
 
-    public static void main(String[] args) {
-        sklad.AddToProduct(productType.Technic, "Avo", "Компьютер", 2, 30000);
-        sklad.AddToProduct(productType.BuildingMaterials, "INC", "Доски", 0, 120);
-        sklad.AddToProduct(productType.BuildingMaterials, "Build", "Кирпичи", 1, 300);
-        sklad.AddToProduct(productType.Technic, "Avo", "Джостик", 3, 1200);
-        sklad.AddToProduct(productType.Technic, "NanoTECH", "Микрочипы", 4, 7000);
-        sklad.AddToProduct(productType.BuildingMaterials, "INC", "Изменрители", 5, 6700);
-        sklad.AddToProduct(productType.Technic, "NanoTECH", "Дисплей", 6, 50000);
-        sklad.AddingBuyerToTheList("Кирилл", 0);
-        sklad.AddingBuyerToTheList("Б.О. Валин", 1);
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
         sklad.GiveBuyerProduct(1, 0, new int[]{1, 2});
         sklad.GiveBuyerProduct(2, 1, new int[]{4, 5, 6});
 
-        Menu();
+        GUIFrame guiFrame = new GUIFrame();
+        guiFrame.setPreferredSize(new Dimension(1000, 560));
+        guiFrame.pack();
+        guiFrame.setVisible(true);
 
         }
     }

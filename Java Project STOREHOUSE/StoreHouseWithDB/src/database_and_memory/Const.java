@@ -32,4 +32,10 @@ public class Const {
     public static final String PROVIDER_ID = "idProviders";
 
     public static final String PROVIDER_NAME = "ProviderName";
+
+    public static final String PRODUCT_TYPE_TABLE = "producttype";
+
+    public static final String PRODUCT_TYPE_ID = "idproductType";
+
+    public static final String PRODUCT_TYPE_NAME = "productTypeName";
 }

@@ -95,13 +95,13 @@ public class Main {
 //            System.exit(0);
 //        }
 //    }
-
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
-
+    public static DataBaseRepository dataBaseRepository = new DataBaseRepository();
+    public static void main(String[] args) throws SQLException {
         GUIFrame guiFrame = new GUIFrame();
         guiFrame.setPreferredSize(new Dimension(1000, 560));
         guiFrame.pack();
         guiFrame.setVisible(true);
+
         }
     }
 //    public static void AddingProducts(){

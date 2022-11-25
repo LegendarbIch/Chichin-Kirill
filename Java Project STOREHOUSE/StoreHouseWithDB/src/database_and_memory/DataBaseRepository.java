@@ -1,12 +1,14 @@
 package database_and_memory;
 
 import entities.Order;
+import entities.ProductType;
 
 import javax.swing.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class DataBaseRepository {
@@ -49,7 +51,7 @@ public class DataBaseRepository {
     public void addBuyerToDB(String FIO) throws SQLException, ClassNotFoundException {
 
         String insert = "INSERT INTO " + Const.BUYERS_TABLE + "(" + Const.BUYERS_FIO + ")" +
-                " VALUES(?)";
+                "VALUES(?)";
         PreparedStatement prSt = dataBaseHandler.CreateStatement(insert);
         try {
 
@@ -62,6 +64,27 @@ public class DataBaseRepository {
             try { prSt.close();  }
             catch (SQLException e) { e.printStackTrace(); }
         }
+    }
+    public void deleteBuyerFromDB(int id) throws SQLException {
+        String delete = "DELETE FROM " + Const.BUYERS_TABLE + " WHERE " +
+                Const.BUYERS_ID + "=" + id;
+        PreparedStatement prSt = dataBaseHandler.CreateStatement(delete);
+        prSt.executeUpdate();
+        prSt.close();
+    }
+    public void deleteProductFromDB(int id) throws SQLException {
+        String delete = "DELETE FROM " + Const.PRODUCT_TABLE + " WHERE " +
+                Const.PRODUCT_ID + "=" + id;
+        PreparedStatement prSt = dataBaseHandler.CreateStatement(delete);
+        prSt.executeUpdate();
+        prSt.close();
+    }
+    public void deleteOrderFromDB(int id, String OrderId) throws SQLException {
+        String delete = "DELETE FROM " + Const.ORDER_TABLE + " WHERE " +
+                OrderId + "=" + id;
+        PreparedStatement prSt = dataBaseHandler.CreateStatement(delete);
+        prSt.executeUpdate();
+        prSt.close();
     }
     public void FillBuyersFromDB() throws SQLException, ClassNotFoundException {
         String query = "SELECT * " +
@@ -78,6 +101,26 @@ public class DataBaseRepository {
         } finally {
             try { rs.close();
             } catch (SQLException e) { e.printStackTrace(); }
+        }
+    }
+    public void FillProvidersFromDB() {
+        String query = "SELECT * " +
+                "FROM " + Const.PROVIDER_TABLE;
+        ResultSet rs = dataBaseHandler.CreateResultSet(query);
+        try {
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                String provider = rs.getString(2);
+                InMR.AddToProviders(id, provider);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
     public void FillProductsFromDB() throws SQLException, ClassNotFoundException {
@@ -101,12 +144,86 @@ public class DataBaseRepository {
             } catch (SQLException e) { e.printStackTrace(); }
         }
     }
-    public void addProductToDB(String ProductName, int Price, String Type, String Provider, int Amount) throws SQLException, ClassNotFoundException {
+    public void FillProductTypeFromDB() throws SQLException {
+        String query = "SELECT * " +
+                "FROM " + Const.PRODUCT_TYPE_TABLE;
+        ResultSet rs = dataBaseHandler.CreateResultSet(query);
+        try {
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                String prodtypename = rs.getString(2);
+                InMR.AddToProductType(id, prodtypename);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            rs.close();
+        }
+    }
+    public void FillOrdersFromDB() throws SQLException {
+        String query = "SELECT * " +
+                "FROM " + Const.ORDER_TABLE;
+        ResultSet rs = dataBaseHandler.CreateResultSet(query);
+        try {
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                int buyerid = rs.getInt(2);
+                int productid = rs.getInt(3);
+                int prodcutamount = rs.getInt(4);
+                InMR.TakeOrder(id, buyerid, productid, prodcutamount);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            rs.close();
+        }
+    }
+    public ArrayList<String> getGroupingProductOnType(String producttype) throws SQLException {
+        String query = "SELECT * FROM " + Const.PRODUCT_TABLE + " WHERE " + Const.PRODUCT_TYPE + "="
+                + "'" + producttype + "'";
+        ResultSet rs = dataBaseHandler.CreateResultSet(query);
+        ArrayList<String> product = new ArrayList<>();
+        ArrayList<String> data = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                product.add(String.valueOf(rs.getInt(1)));
+                product.add(rs.getString(2));
+                product.add(String.valueOf(rs.getInt(3)));
+                product.add(rs.getString(4));
+                product.add(rs.getString(5));
+                product.add(String.valueOf(rs.getInt(6)));
+                data.add(String.valueOf(product));
+                product.clear();
+            }
+            return data;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            rs.close();
+        }
+    }
+    public boolean CheckTheSameType(String Table, String Column ,String type) throws SQLException {
+        boolean itsTrue = false;
+        String query = "SELECT * FROM " + Table + " WHERE " + Column + "="
+                + "?" ;
+        try (PreparedStatement prSt = dataBaseHandler.CreateStatement(query)) {
+            prSt.setString(1, type);
+            try(ResultSet rs = prSt.executeQuery()) {
+                if(rs.next()) {
+                    itsTrue = true;
+                }
+            }
+        }
+        return itsTrue;
+    }
+        public void addProductToDB(String ProductName, int Price, String Type, String Provider, int Amount) throws SQLException, ClassNotFoundException {
         String query = "INSERT INTO " + Const.PRODUCT_TABLE + "(" + Const.PRODUCT_NAME + "," + Const.PRODUCT_PRICE + ","
                 + Const.PRODUCT_TYPE + "," + Const.PRODUCT_PROVIDER + "," + Const.PRODUCT_AMOUNT + ")" + "VALUES(?,?,?,?,?)";
         String query1 = "INSERT INTO " + Const.PROVIDER_TABLE + "(" + Const.PROVIDER_NAME + ")" + " VALUES(?)";
+        String query2 = "INSERT INTO " + Const.PRODUCT_TYPE_TABLE + "(" + Const.PRODUCT_TYPE_NAME + ")" + " VALUES(?)";
         PreparedStatement prSt = dataBaseHandler.CreateStatement(query);
         PreparedStatement prSt1 = dataBaseHandler.CreateStatement(query1);
+        PreparedStatement prSt2 = dataBaseHandler.CreateStatement(query2);
         try {
             prSt.setString(1, ProductName);
             prSt.setInt(2, Price);
@@ -114,8 +231,14 @@ public class DataBaseRepository {
             prSt.setString(4, Provider);
             prSt.setInt(5, Amount);
             prSt.executeUpdate();
-            prSt1.setString(1,Provider);
-            prSt1.executeUpdate();
+            if (!CheckTheSameType(Const.PROVIDER_TABLE, Const.PROVIDER_NAME, Provider)) {
+                prSt1.setString(1, Provider);
+                prSt1.executeUpdate();
+            }
+            if (!CheckTheSameType(Const.PRODUCT_TYPE_TABLE, Const.PRODUCT_TYPE_NAME, Type)) {
+                prSt2.setString(1, Type);
+                prSt2.executeUpdate();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -152,10 +275,16 @@ public class DataBaseRepository {
     public String getProductFromDBbyID(int ID) throws SQLException, ClassNotFoundException {
         String query = "SELECT * FROM " + Const.PRODUCT_TABLE + " WHERE " + ID + " = " + Const.PRODUCT_ID;
         ResultSet rs = dataBaseHandler.CreateResultSet(query);
+
         try {
             if (rs.next()) {
-                String name = rs.getString(2);
-                return name;
+                return "[id " + rs.getInt(1) + " " +
+                rs.getString(2) + " " +
+                rs.getInt(3) + " '" +
+                rs.getString(4) + "' " +
+                rs.getString(5) + "| количество " +
+                rs.getInt(6)+ "]";
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -197,6 +326,7 @@ public class DataBaseRepository {
         }
         return null;
     }
+
     //    public int AutoID() {
 //        ArrayList<Integer> AllID = new ArrayList<>();
 //        int maxID = 1;

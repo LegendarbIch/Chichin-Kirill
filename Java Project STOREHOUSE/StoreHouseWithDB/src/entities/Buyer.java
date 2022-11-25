@@ -26,6 +26,6 @@ public class Buyer {
 
     @Override
     public String toString() {
-        return getBuyerId() + " " + getFIO();
+        return getBuyerId() + " |   " + getFIO();
     }
 }

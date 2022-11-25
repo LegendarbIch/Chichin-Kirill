@@ -1,16 +1,25 @@
 package entities;
 
 // класс Товар
-public class Product extends Provider {
+public class Product {
     private String ProductName;
     private int ProductArticle;
     private int Price;
     private String ProductType;
 
+    public String getProviderName() {
+        return ProviderName;
+    }
+
+    public void setProviderName(String providerName) {
+        ProviderName = providerName;
+    }
+
+    private String ProviderName;
     private int Amount;
 
     public Product(int ProductArticle,String ProductName, int Price, String ProductType, String ProviderName, int Amount) {
-        super(ProviderName);
+        this.ProviderName = ProviderName;
         this.ProductName = ProductName;
         this.ProductArticle = ProductArticle;
         this.Price = Price;

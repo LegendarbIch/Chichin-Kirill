@@ -9,6 +9,8 @@ import java.util.stream.Collectors;
 public class InMemoryRepository {
     private ArrayList<Sklad> sklad = new ArrayList<>();
     private final ArrayList<Product> products = new ArrayList<>();
+
+    private ArrayList<ProductType> productTypes = new ArrayList<>();
     //Список наличия товара на складе ^
     private ArrayList<Product> AvailableProductPositions = new ArrayList<>();
     //Список позиций товаров ^
@@ -16,11 +18,19 @@ public class InMemoryRepository {
 
     //Список покупателей ^
     private ArrayList<Order> orders = new ArrayList<>();
+
+
     //Список заказов ^
     private ArrayList<Provider> providers = new ArrayList<>();
 
     public String getSkladData() {
         return new Sklad(Const.StoreHouse_name, Const.StoreHouse_address).toString();
+    }
+
+
+
+    public void AddToProductType(int ProductTypeID, String ProductTypeName) {
+        this.productTypes.add(new ProductType(ProductTypeID, ProductTypeName));
     }
     public void AddToProduct(int productArticle,String productName,int price,String ProductType,String ProviderName, int Amount) {
         this.products.add(new Product(productArticle, productName, price, ProductType, ProviderName, Amount));
@@ -38,8 +48,8 @@ public class InMemoryRepository {
 //        }
     }
     // Метод добавления поставщиков по отдельности в список
-    public void AddToProviders(String ProviderName) {
-        this.providers.add(new Provider(ProviderName));
+    public void AddToProviders(int ProviderID,String ProviderName) {
+        this.providers.add(new Provider(ProviderID , ProviderName));
     }
 
     // Метод добавления покупателя в список
@@ -55,7 +65,14 @@ public class InMemoryRepository {
     public void TakeOrder(int OrderID, int BuyerID, int ProductsID, int Amount) {
         orders.add(new Order(OrderID, BuyerID, ProductsID, Amount));
     }
-
+    public Provider getProviderByID(int id) {
+        for (Provider provider : providers) {
+            if (id == provider.getProviderID()) {
+                return provider;
+            }
+        }
+        return null;
+    }
     public Product getProductByID(int id) {
         for (Product product : products) {
             if (id == product.getProductArticle()) {
@@ -112,6 +129,17 @@ public class InMemoryRepository {
 
     public ArrayList<Order> getOrders() {
         return orders;
+    }
+    public ArrayList<ProductType> getProductTypes() {
+        return productTypes;
+    }
+
+    public ArrayList<Provider> getProviders() {
+        return providers;
+    }
+
+    public void setProviders(ArrayList<Provider> providers) {
+        this.providers = providers;
     }
 
     public void setOrders(ArrayList<Order> orders) {
